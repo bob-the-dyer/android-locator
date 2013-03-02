@@ -1,5 +1,7 @@
 package ru.spb.cupchinolabs.androidlocator;
 
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
@@ -12,6 +14,8 @@ import android.widget.Toast;
  * Time: 9:49
  */
 public class LocationMonitorService extends Service {
+
+    private static final int ONGOING_NOTIFICATION = 135438438;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -33,8 +37,14 @@ public class LocationMonitorService extends Service {
     public void onCreate() {
 //        The system calls this method when the service is first created, to perform one -time setup procedures (before
 //        it calls either onStartCommand () or onBind ()).If the service is already running, this method is not called.
-        //TODO startForeground()?
-        //TODO Status Bar Notification ?
+        Notification notification = new Notification(R.drawable.stat_happy, getText(R.string.locator_notification_ticker_text),
+                System.currentTimeMillis());
+        Intent notificationIntent = new Intent(this, LocationMonitorAction.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+        notification.setLatestEventInfo(this, getText(R.string.locator_notification_content_title),
+                getText(R.string.locator_notification_content_text), pendingIntent);
+        startForeground(ONGOING_NOTIFICATION, notification);
+
         //TODO start worker thread (see HandlerThread, Looper)
         Toast.makeText(this, "Location monitor service is starting ...", Toast.LENGTH_SHORT).show();
     }
@@ -45,7 +55,7 @@ public class LocationMonitorService extends Service {
 //        should implement this to clean up any resources such as threads, registered listeners, receivers, etc.This
 //        is the last call the service receives.
         Toast.makeText(this, "Location monitor service is stopping ...", Toast.LENGTH_SHORT).show();
-        //TODO stopForeground()?
+        stopForeground(true);
         //TODO stop worker thread
     }
 }

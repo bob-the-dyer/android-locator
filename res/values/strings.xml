@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Location Monitor</string>
-    <string name="locating_is_on_toggle_text">Location monitor \n is turned on \n</string>
-    <string name="locating_is_off_toggle_text">Location monitor \n is turned off \n</string>
+    <string name="locator_is_on_toggle_text">Location monitor \n is turned on \n</string>
+    <string name="locator_is_off_toggle_text">Location monitor \n is turned off \n</string>
+    <string name="locator_notification_ticker_text">Location monitor is turning on ... </string>
+    <string name="locator_notification_content_title">Location monitor</string>
+    <string name="locator_notification_content_text">Location monitor is turned on</string>
 </resources>
