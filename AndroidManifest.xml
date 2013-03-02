@@ -10,7 +10,7 @@
                   android:label="@string/app_name"
                   android:launchMode="singleTask"
                   android:allowTaskReparenting="true"
-                  android:theme="@android:style/Theme.Light"
+                  android:theme="@android:style/Theme.Black"
                   android:clearTaskOnLaunch="true"
                 >
         <intent-filter>

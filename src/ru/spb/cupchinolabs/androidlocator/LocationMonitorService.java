@@ -35,6 +35,9 @@ public class LocationMonitorService extends Service {
 
     @Override
     public void onCreate() {
+        //TODO permissions
+        //TODO check availablity of hardwire : if no gps onboard no need to ask gps for location
+        //TODO check yandex.locator?
         //TODO init ContentProvider, check wifi, gps?
         String text = "Location monitor service - creating ...";
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
