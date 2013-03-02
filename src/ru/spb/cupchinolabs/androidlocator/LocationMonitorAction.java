@@ -1,10 +1,7 @@
 package ru.spb.cupchinolabs.androidlocator;
 
 import android.app.Activity;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.*;
 import android.util.Log;
 import android.view.View;
@@ -16,78 +13,39 @@ public class LocationMonitorAction extends Activity {
 
     //TODO FIX BUG - handle navigation on back button, app shouldn't be destroyed
 
-    private Messenger messenger;
-
-    private boolean isBound;
-    private ServiceConnection serviceConnection;
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate");
         setContentView(R.layout.location_monitor_control);
-        //TODO check liveness of service ?
-        //TODO set toggle button value ?
-
+        Log.d(TAG, "onCreate");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         Log.d(TAG, "onStart");
-        bindServiceIf(!isBound);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         Log.d(TAG, "onStop");
-        unbindServiceIf(isBound);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy");
     }
 
     public void onToggleClicked(View view) {
         boolean on = ((ToggleButton) view).isChecked();
-        Log.d(TAG, "onToggleClicked:" + on);
-        int messageId;
         if (on) {
-            messageId = LocationMonitorService.MSG_START;
+            startService(new Intent(LocationMonitorService.class.getName()));
         } else {
-            messageId = LocationMonitorService.MSG_STOP;
+            stopService(new Intent(LocationMonitorService.class.getName()));
         }
-        Message msg = Message.obtain(null, messageId, 0, 0);
-        try {
-            messenger.send(msg);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        Log.d(TAG, "onToggleClicked:" + on);
     }
 
-    private void unbindServiceIf(boolean unbind) {
-        if (unbind) {
-            unbindService(serviceConnection);
-            serviceConnection = null;
-            isBound = false;
-        }
-    }
-
-    private void bindServiceIf(boolean bind) {
-        if (bind){
-            serviceConnection =  new ServiceConnection() {
-
-                public void onServiceConnected(ComponentName className, IBinder service) {
-                    messenger = new Messenger(service);
-                    isBound = true;
-                }
-
-                public void onServiceDisconnected(ComponentName className) {
-                    messenger = null;
-                    isBound = false;
-                }
-
-            };
-            bindService(new Intent(this, LocationMonitorService.class), serviceConnection, Context.BIND_AUTO_CREATE);
-        }
-    }
-
-}
+ }
