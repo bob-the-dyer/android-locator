@@ -52,7 +52,7 @@ public class LocationMonitorAction extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-        bindService();
+        bindServiceIf(!isBound);
     }
 
     @Override
@@ -62,9 +62,6 @@ public class LocationMonitorAction extends Activity {
     }
 
     public void onToggleClicked(View view) {
-        if (!isBound) {
-            bindService();
-        }
         boolean on = ((ToggleButton) view).isChecked();
         int messageId;
         if (on) {
@@ -78,8 +75,6 @@ public class LocationMonitorAction extends Activity {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-        unbindServiceIf(!on);
-
     }
 
     private void unbindServiceIf(boolean unbind) {
@@ -89,8 +84,10 @@ public class LocationMonitorAction extends Activity {
         }
     }
 
-    private void bindService() {
-        bindService(new Intent(this, LocationMonitorService.class), serviceConnection, Context.BIND_AUTO_CREATE);
+    private void bindServiceIf(boolean bind) {
+        if (bind){
+            bindService(new Intent(this, LocationMonitorService.class), serviceConnection, Context.BIND_AUTO_CREATE);
+        }
     }
 
 }

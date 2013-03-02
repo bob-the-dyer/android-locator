@@ -5,6 +5,7 @@
     <excludeFromCompile>
       <directory url="file://$PROJECT_DIR$/gen" includeSubdirectories="true" />
       <directory url="file://$USER_HOME$/Downloads/android_sample/LbsAPI/gen" includeSubdirectories="true" />
+      <file url="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/RemoteServiceBinding.java" />
     </excludeFromCompile>
     <resourceExtensions />
     <wildcardResourcePatterns>

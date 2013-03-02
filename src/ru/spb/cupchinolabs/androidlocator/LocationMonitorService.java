@@ -37,10 +37,12 @@ public class LocationMonitorService extends Service {
                     notifyOnStart();
                     //TODO start worker thread (see HandlerThread, Looper)
                     //TODO replace Toast with notification
+                    //TODO I must be undestroyable
                     break;
                 case MSG_STOP:
                     notifyOnStop();
                     //TODO stop worker thread
+                    //TODO I must be destroyable
                     break;
                 default:
                     super.handleMessage(msg);
