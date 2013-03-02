@@ -11,11 +11,12 @@
       </GlobalState>
     </option>
   </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="LocationMonitor" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="9aaf2011-bafd-4ec6-93e6-9e07319556d9" name="Default" comment="changing notification icon">
+    <list default="true" id="9aaf2011-bafd-4ec6-93e6-9e07319556d9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/ru/spb/cupchinolabs/androidlocator/BuildConfig.java" afterPath="$PROJECT_DIR$/gen/ru/spb/cupchinolabs/androidlocator/BuildConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocationMonitorAction.java" afterPath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocationMonitorAction.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocationMonitorService.java" afterPath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocationMonitorService.java" />
     </list>
     <ignored path="android-locator.iws" />
@@ -95,7 +96,7 @@
       <file leaf-file-name="LocationMonitorService.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocationMonitorService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="62" column="25" selection-start="1941" selection-end="1941" vertical-scroll-proportion="0.0">
+            <state line="99" column="16" selection-start="3305" selection-end="3305" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -110,10 +111,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LocationMonitorAction.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="LocationMonitorAction.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocationMonitorAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="42" selection-start="1360" selection-end="1360" vertical-scroll-proportion="0.0">
+            <state line="50" column="42" selection-start="1360" selection-end="1360" vertical-scroll-proportion="0.34562212">
               <folding />
             </state>
           </provider>
@@ -137,10 +138,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="96" selection-start="818" selection-end="818" vertical-scroll-proportion="0.6267281">
+            <state line="16" column="96" selection-start="818" selection-end="818" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -177,9 +178,9 @@
         <option value="$PROJECT_DIR$/res/layout/location_monitor_control.xml" />
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/RemoteServiceBinding.java" />
-        <option value="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocationMonitorService.java" />
         <option value="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocationMonitorAction.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocationMonitorService.java" />
       </list>
     </option>
   </component>
@@ -598,7 +599,11 @@
       <created>1362240951575</created>
       <updated>1362240951575</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary=" - adding debug to main handlers&#10; - memory leak fix">
+      <created>1362242139600</created>
+      <updated>1362242139600</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -667,7 +672,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="changing notification icon" />
+    <option name="LAST_COMMIT_MESSAGE" value=" - adding debug to main handlers&#10; - memory leak fix" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -687,6 +692,7 @@
     <MESSAGE value="reworking service for remote access" />
     <MESSAGE value=" - reworking service to live in separate process&#10; - small fixes&#10;" />
     <MESSAGE value="changing notification icon" />
+    <MESSAGE value=" - adding debug to main handlers&#10; - memory leak fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -780,23 +786,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="96" selection-start="818" selection-end="818" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocationMonitorService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="25" selection-start="1941" selection-end="1941" vertical-scroll-proportion="0.0">
+        <state line="99" column="16" selection-start="3305" selection-end="3305" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocationMonitorAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="42" selection-start="1360" selection-end="1360" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="96" selection-start="818" selection-end="818" vertical-scroll-proportion="0.6267281">
+        <state line="50" column="42" selection-start="1360" selection-end="1360" vertical-scroll-proportion="0.34562212">
           <folding />
         </state>
       </provider>

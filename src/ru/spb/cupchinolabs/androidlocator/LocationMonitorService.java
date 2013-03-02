@@ -19,13 +19,11 @@ import android.widget.Toast;
  */
 public class LocationMonitorService extends Service {
 
-    protected static final int MSG_START = 1;
-    protected static final int MSG_STOP  = 2;
-
     private static final String TAG = "LocationMonitorService";
-    /**
-     * Target we publish for clients to send messages to IncomingHandler.
-     */
+
+    protected static final int MSG_START = 1;
+    protected static final int MSG_STOP = 2;
+
     final private Messenger messenger = new Messenger(new IncomingHandler());
 
     /**
@@ -52,10 +50,6 @@ public class LocationMonitorService extends Service {
         }
     }
 
-    /**
-     * When binding to the service, we return an interface to our messenger
-     * for sending messages to the service.
-     */
     @Override
     public IBinder onBind(Intent intent) {
         String text = "Location monitor service - binding ...";
@@ -66,8 +60,6 @@ public class LocationMonitorService extends Service {
 
     @Override
     public void onCreate() {
-//        The system calls this method when the service is first created, to perform one -time setup procedures (before
-//        it calls either onStartCommand () or onBind ()).If the service is already running, this method is not called.
         //TODO init ContentProvider, check wifi, gps?
         String text = "Location monitor service - creating ...";
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
@@ -76,9 +68,6 @@ public class LocationMonitorService extends Service {
 
     @Override
     public void onDestroy() {
-//        The system calls this method when the service is no longer used and is being destroyed.Your service
-//        should implement this to clean up any resources such as threads, registered listeners, receivers, etc.This
-//        is the last call the service receives.
         //TODO release all the resources
         String text = "Location monitor service - destroying ...";
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
@@ -94,13 +83,17 @@ public class LocationMonitorService extends Service {
     }
 
     private void notifyOnStart() {
-        Notification notification = new Notification(R.drawable.triangle, getText(R.string.locator_notification_ticker_text),
-                System.currentTimeMillis());
-        Intent notificationIntent = new Intent(this, LocationMonitorAction.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+
+        Notification notification = new Notification(
+                R.drawable.triangle, getText(R.string.locator_notification_ticker_text), System.currentTimeMillis());
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, LocationMonitorAction.class), 0);
+
         notification.setLatestEventInfo(this, getText(R.string.locator_notification_content_title),
                 getText(R.string.locator_notification_content_text), pendingIntent);
+
         startForeground(R.string.locator_notification_content_title, notification);
+
         String text = "Location monitor service is starting ...";
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
         Log.d(TAG, text);
