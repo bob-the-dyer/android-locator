@@ -16,7 +16,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9aaf2011-bafd-4ec6-93e6-9e07319556d9" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\VladimirK\IdeaProjects\android-locator\SOLUTION.txt" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/ru/spb/cupchinolabs/androidlocator/BuildConfig.java" afterPath="$PROJECT_DIR$/gen/ru/spb/cupchinolabs/androidlocator/BuildConfig.java" />
@@ -79,15 +78,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="REQUIREMENTS.txt" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/REQUIREMENTS.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="39" selection-start="908" selection-end="908" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="R.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gen/ru/spb/cupchinolabs/androidlocator/R.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -97,10 +87,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LocationMonitorService.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="LocationMonitorService.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocationMonitorService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="22" selection-start="1529" selection-end="1529" vertical-scroll-proportion="0.29294756">
+            <state line="27" column="89" selection-start="696" selection-end="696" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WifiAndCellCollector.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Downloads/android_sample/LbsAPI/src/ru/yandex/yandexlbs/WifiAndCellCollector.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="93" column="43" selection-start="3830" selection-end="3830" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -115,10 +114,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LocationMonitorAction.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="LocationMonitorAction.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocationMonitorAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="0" selection-start="734" selection-end="734" vertical-scroll-proportion="0.0">
+            <state line="6" column="24" selection-start="187" selection-end="187" vertical-scroll-proportion="0.15962441">
               <folding />
             </state>
           </provider>
@@ -154,7 +153,7 @@
       <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="52" selection-start="604" selection-end="604" vertical-scroll-proportion="0.0">
+            <state line="13" column="49" selection-start="716" selection-end="716" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -611,7 +610,11 @@
       <created>1362242511009</created>
       <updated>1362242511009</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary=" - launchMode=&quot;singleTask&quot;, allowTaskReparenting=&quot;true&quot;&#10; - reworking service from bound to start">
+      <created>1362248053521</created>
+      <updated>1362248053521</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -619,7 +622,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289183" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32986537" sideWeight="0.67108166" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289183" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -627,13 +630,13 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24172185" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289183" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289183" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3620309" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24503312" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2001224" sideWeight="0.6379691" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2001224" sideWeight="0.7549669" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1878825" sideWeight="0.8068433" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21192053" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -680,7 +683,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="comments were deleted" />
+    <option name="LAST_COMMIT_MESSAGE" value=" - launchMode=&quot;singleTask&quot;, allowTaskReparenting=&quot;true&quot;&#10; - reworking service from bound to start" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -702,6 +705,7 @@
     <MESSAGE value="changing notification icon" />
     <MESSAGE value=" - adding debug to main handlers&#10; - memory leak fix" />
     <MESSAGE value="comments were deleted" />
+    <MESSAGE value=" - launchMode=&quot;singleTask&quot;, allowTaskReparenting=&quot;true&quot;&#10; - reworking service from bound to start" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -753,13 +757,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Downloads/android_sample/LbsAPI/src/ru/yandex/yandexlbs/WifiAndCellCollector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="43" selection-start="3830" selection-end="3830" vertical-scroll-proportion="0.318569">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files (x86)/Android/android-sdk/platforms/android-7/android.jar!/android/os/Messenger.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="11" selection-start="377" selection-end="377" vertical-scroll-proportion="0.22869955">
@@ -781,13 +778,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files (x86)/Android/android-sdk/platforms/android-7/android.jar!/android/app/Service.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="39" selection-start="1304" selection-end="1304" vertical-scroll-proportion="0.46689895">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/location_monitor_control.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="51" selection-start="576" selection-end="576" vertical-scroll-proportion="0.0">
@@ -802,23 +792,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+    <entry file="file://$USER_HOME$/Downloads/android_sample/LbsAPI/src/ru/yandex/yandexlbs/WifiAndCellCollector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="52" selection-start="604" selection-end="604" vertical-scroll-proportion="0.0">
+        <state line="93" column="43" selection-start="3830" selection-end="3830" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocationMonitorAction.java">
+    <entry file="jar://C:/Program Files (x86)/Android/android-sdk/platforms/android-7/android.jar!/android/app/Service.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="0" selection-start="734" selection-end="734" vertical-scroll-proportion="0.0">
+        <state line="30" column="39" selection-start="1304" selection-end="1304" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocationMonitorService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="22" selection-start="1529" selection-end="1529" vertical-scroll-proportion="0.29294756">
+        <state line="27" column="89" selection-start="696" selection-end="696" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="49" selection-start="716" selection-end="716" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocationMonitorAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="24" selection-start="187" selection-end="187" vertical-scroll-proportion="0.15962441">
           <folding />
         </state>
       </provider>

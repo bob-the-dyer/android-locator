@@ -20,13 +20,14 @@ public class LocationMonitorService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        //TODO start worker thread
         notifyOnStartCommand();
         return super.onStartCommand(intent, flags, startId);
     }
 
     @Override
     public IBinder onBind(Intent intent) {
-        String text = "Location monitor service - binding ...";
+        String text = "Location monitor service - someone is binding ???";
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
         Log.d(TAG, text);
         return null;
@@ -42,7 +43,7 @@ public class LocationMonitorService extends Service {
 
     @Override
     public void onDestroy() {
-        //TODO release all the resources
+        //TODO release all the resources, gracefully stop the worker thread
         notifyOnDestroy();
     }
 

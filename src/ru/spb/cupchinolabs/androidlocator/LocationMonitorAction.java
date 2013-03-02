@@ -1,8 +1,9 @@
 package ru.spb.cupchinolabs.androidlocator;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import android.os.*;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ToggleButton;
@@ -10,13 +11,16 @@ import android.widget.ToggleButton;
 public class LocationMonitorAction extends Activity {
 
     private static final String TAG = "LocationMonitorAction";
-
-    //TODO FIX BUG - handle navigation on back button, app shouldn't be destroyed
+    private static final String IS_ON = "IS_ON";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.location_monitor_control);
+
+        ((ToggleButton) findViewById(R.id.togglebutton))
+                .setChecked(getPreferences(Context.MODE_PRIVATE).getBoolean(IS_ON, false));
+
         Log.d(TAG, "onCreate");
     }
 
@@ -29,6 +33,12 @@ public class LocationMonitorAction extends Activity {
     @Override
     protected void onStop() {
         super.onStop();
+
+        getPreferences(Context.MODE_PRIVATE)
+                .edit()
+                .putBoolean(IS_ON, ((ToggleButton) findViewById(R.id.togglebutton)).isChecked())
+                .commit();
+
         Log.d(TAG, "onStop");
     }
 
@@ -48,4 +58,4 @@ public class LocationMonitorAction extends Activity {
         Log.d(TAG, "onToggleClicked:" + on);
     }
 
- }
+}
