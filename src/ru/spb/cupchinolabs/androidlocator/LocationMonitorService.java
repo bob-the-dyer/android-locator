@@ -84,7 +84,7 @@ public class LocationMonitorService extends Service {
     }
 
     private void notifyOnStart() {
-        Notification notification = new Notification(R.drawable.stat_happy, getText(R.string.locator_notification_ticker_text),
+        Notification notification = new Notification(R.drawable.triangle, getText(R.string.locator_notification_ticker_text),
                 System.currentTimeMillis());
         Intent notificationIntent = new Intent(this, LocationMonitorAction.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
