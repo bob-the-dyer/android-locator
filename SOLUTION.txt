@@ -1,2 +1,4 @@
  - Created new idea project - V
- - Get and install sdk 2.1, created 2.1 compatible AVD
+ - Get and install sdk 2.1, created 2.1 compatible AVD - V
+ - Create location monitor service skeleton - V
+ - Create location monitor control action - V

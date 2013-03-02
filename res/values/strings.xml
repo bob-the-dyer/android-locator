@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">android-locator</string>
+    <string name="app_name">Location Monitor</string>
+    <string name="locating_is_on_toggle_text">Location monitor \n is turned on \n</string>
+    <string name="locating_is_off_toggle_text">Location monitor \n is turned off \n</string>
 </resources>
