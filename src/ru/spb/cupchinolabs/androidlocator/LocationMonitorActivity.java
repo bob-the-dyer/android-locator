@@ -4,13 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ToggleButton;
 
-public class LocationMonitorAction extends Activity {
+import static ru.spb.cupchinolabs.androidlocator.Utils.print;
 
-    private static final String TAG = "LocationMonitorAction";
+public class LocationMonitorActivity extends Activity {
+
+    private static final String TAG = "LocationMonitorActivity";
     private static final String IS_ON = "IS_ON";
 
     @Override
@@ -21,31 +22,31 @@ public class LocationMonitorAction extends Activity {
         ((ToggleButton) findViewById(R.id.togglebutton))
                 .setChecked(getPreferences(Context.MODE_PRIVATE).getBoolean(IS_ON, false));
 
-        Log.d(TAG, "onCreate");
+        print("onCreate", null, TAG);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d(TAG, "onStart");
+        print("onStart", null, TAG);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        print("onStop", null, TAG);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
 
         getPreferences(Context.MODE_PRIVATE)
                 .edit()
                 .putBoolean(IS_ON, ((ToggleButton) findViewById(R.id.togglebutton)).isChecked())
                 .commit();
 
-        Log.d(TAG, "onStop");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d(TAG, "onDestroy");
+        print("onDestroy", null, TAG);
     }
 
     public void onToggleClicked(View view) {
@@ -55,7 +56,7 @@ public class LocationMonitorAction extends Activity {
         } else {
             stopService(new Intent(LocationMonitorService.class.getName()));
         }
-        Log.d(TAG, "onToggleClicked:" + on);
+        print("onToggleClicked:" + on, null, TAG);
     }
 
 }
