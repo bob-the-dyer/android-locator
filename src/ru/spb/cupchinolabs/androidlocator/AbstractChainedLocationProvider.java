@@ -20,12 +20,12 @@ abstract public class AbstractChainedLocationProvider implements LocationProvide
     abstract protected Location provideLocation();
 
     @Override
-    public Location locate() {
+    public Location get() {
         Location location = provideLocation();
         if (location != null) {
             return location;
         } else if (nextProvider != null) {
-            return nextProvider.locate();
+            return nextProvider.get();
         } else {
             return null;
         }

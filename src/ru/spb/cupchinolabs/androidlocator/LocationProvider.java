@@ -10,6 +10,6 @@ import android.location.Location;
  */
 public interface LocationProvider {
 
-    Location locate();
+    Location get();
 
 }

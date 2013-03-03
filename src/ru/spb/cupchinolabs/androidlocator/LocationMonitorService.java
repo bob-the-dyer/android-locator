@@ -6,11 +6,16 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
+import android.util.Log;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
+import static android.location.LocationManager.GPS_PROVIDER;
+import static android.location.LocationManager.NETWORK_PROVIDER;
 import static ru.spb.cupchinolabs.androidlocator.Utils.print;
 
 /**
@@ -21,99 +26,58 @@ import static ru.spb.cupchinolabs.androidlocator.Utils.print;
  */
 public class LocationMonitorService extends Service {
 
-    private static final String TAG = "LocationMonitorService";
-    private static final int INTERVAL_IN_SECONDS_TO_SLEEP = 10;
-    private static final int TIMEOUT = 20;
+    private static final String TAG = LocationMonitorService.class.getSimpleName();
 
-    private volatile boolean runMainLoop = true;
-    private LocationListener locationListener;
+    private static final int INTERVAL_IN_SEC = 10;
+    private static final int TIMEOUT_IN_SEC  = 20;
 
-//    public LocationMonitorService() {
-//        super(TAG + "-thread");
-//    }
+    private Handler handler;
+    private Timer timer;
 
-//    @Override
-    protected void onHandleIntent(Intent intent) {
-        LocationManager locationManager =
-                (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+    private TimerTask timerTask = new TimerTask() {
 
-        locationListener = new LocationListener() {
+        @Override
+        public void run() {
+            LocationManager manager =
+                    (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-            private static final String TAG = "LocationMonitorListener";
+            LocationProvider provider =
+                    new LocationServiceProvider(GPS_PROVIDER, manager, handler, TIMEOUT_IN_SEC)
+                            .setNext(new LocationServiceProvider(NETWORK_PROVIDER, manager, handler, TIMEOUT_IN_SEC)
+                                    .setNext(new DeadEndLocationProvider()));
 
-            public void onLocationChanged(Location location) {
-                print("onLocationChanged:" + location, null, TAG);
+            Location location = provider.get();
+
+            Log.d(TAG, "location->" + location);
+
+            if (location != null) {
+                //TODO store location
+            } else {
+                //TODO
             }
-
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-                print("onStatusChanged:status->" + status + ",provider->" + provider, null, TAG);
-            }
-
-            public void onProviderEnabled(String provider) {
-                print("onProviderEnabled:" + provider, null, TAG);
-            }
-
-            public void onProviderDisabled(String provider) {
-                print("onProviderDisabled:" + provider, null, TAG);
-            }
-        };
-
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-
-
-        LocationProvider headLocationProvider =
-                new GpsLocationProvider(locationManager, TIMEOUT)
-                        .setNext(new NetworkLocationProvider(locationManager, TIMEOUT)
-                                .setNext(new DeadEndLocationProvider()));
-
-//        while (runMainLoop) {
-//
-//            Location location = headLocationProvider.locate();
-//
-//            Log.d(TAG, "location->" + location);
-//
-//            if (location != null) {
-//                //TODO store location
-//            } else {
-//                //TODO
-//
-//            }
-//
-//            if (!runMainLoop){
-//                break;
-//            }
-//
-//            try {
-//                Thread.sleep(INTERVAL_IN_SECONDS_TO_SLEEP * 1000);
-//                Log.d(TAG, "after sleep");
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//                Log.d(TAG, "interrupted");
-//                Thread.currentThread().interrupt();
-//            }
-//        }
-
-        //TODO release resources
-    }
+        }
+    };
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        onHandleIntent(null);
         notifyOnStartCommand();
-        return START_STICKY;//TODO think about it
+        return START_STICKY;//TODO think about it  again
     }
 
     @Override
     public void onCreate() {
         print("Location monitor service - creating ...", this, TAG);
+        handler = new Handler();
+        timer = new Timer("LMS-timer");
+        timer.schedule(timerTask, 1000L, INTERVAL_IN_SEC * 1000L);
     }
 
     @Override
     public void onDestroy() {
         notifyOnDestroy();
-        ((LocationManager) getSystemService(Context.LOCATION_SERVICE))
-                .removeUpdates(locationListener);
-        runMainLoop = false;
+        timer.cancel();
+        timer = null;
+        handler = null;
     }
 
     @Override

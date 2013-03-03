@@ -11,7 +11,8 @@ import static ru.spb.cupchinolabs.androidlocator.Utils.print;
 
 public class LocationMonitorActivity extends Activity {
 
-    private static final String TAG = "LocationMonitorActivity";
+    private static final String TAG = LocationMonitorActivity.class.getSimpleName();
+
     private static final String IS_ON = "IS_ON";
 
     @Override
