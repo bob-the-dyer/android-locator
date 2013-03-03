@@ -5,7 +5,10 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Bundle;
 import android.os.IBinder;
 
 import static ru.spb.cupchinolabs.androidlocator.Utils.print;
@@ -19,22 +22,85 @@ import static ru.spb.cupchinolabs.androidlocator.Utils.print;
 public class LocationMonitorService extends Service {
 
     private static final String TAG = "LocationMonitorService";
+    private static final int INTERVAL_IN_SECONDS_TO_SLEEP = 10;
+    private static final int TIMEOUT = 20;
 
-    private Thread workerThread;
+    private volatile boolean runMainLoop = true;
+    private LocationListener locationListener;
 
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        notifyOnStartCommand();
-        workerThread = new LocationMonitorServiceWorker(
-                (LocationManager) getSystemService(Context.LOCATION_SERVICE));
-        workerThread.start();
-        return super.onStartCommand(intent, flags, startId);
+//    public LocationMonitorService() {
+//        super(TAG + "-thread");
+//    }
+
+//    @Override
+    protected void onHandleIntent(Intent intent) {
+        LocationManager locationManager =
+                (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        locationListener = new LocationListener() {
+
+            private static final String TAG = "LocationMonitorListener";
+
+            public void onLocationChanged(Location location) {
+                print("onLocationChanged:" + location, null, TAG);
+            }
+
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+                print("onStatusChanged:status->" + status + ",provider->" + provider, null, TAG);
+            }
+
+            public void onProviderEnabled(String provider) {
+                print("onProviderEnabled:" + provider, null, TAG);
+            }
+
+            public void onProviderDisabled(String provider) {
+                print("onProviderDisabled:" + provider, null, TAG);
+            }
+        };
+
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+
+
+        LocationProvider headLocationProvider =
+                new GpsLocationProvider(locationManager, TIMEOUT)
+                        .setNext(new NetworkLocationProvider(locationManager, TIMEOUT)
+                                .setNext(new DeadEndLocationProvider()));
+
+//        while (runMainLoop) {
+//
+//            Location location = headLocationProvider.locate();
+//
+//            Log.d(TAG, "location->" + location);
+//
+//            if (location != null) {
+//                //TODO store location
+//            } else {
+//                //TODO
+//
+//            }
+//
+//            if (!runMainLoop){
+//                break;
+//            }
+//
+//            try {
+//                Thread.sleep(INTERVAL_IN_SECONDS_TO_SLEEP * 1000);
+//                Log.d(TAG, "after sleep");
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//                Log.d(TAG, "interrupted");
+//                Thread.currentThread().interrupt();
+//            }
+//        }
+
+        //TODO release resources
     }
 
     @Override
-    public IBinder onBind(Intent intent) {
-        print("Location monitor service - someone is binding ???", this, TAG);
-        return null;
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        onHandleIntent(null);
+        notifyOnStartCommand();
+        return START_STICKY;//TODO think about it
     }
 
     @Override
@@ -44,9 +110,15 @@ public class LocationMonitorService extends Service {
 
     @Override
     public void onDestroy() {
-        //TODO release all the resources
-        workerThread.interrupt();
         notifyOnDestroy();
+        ((LocationManager) getSystemService(Context.LOCATION_SERVICE))
+                .removeUpdates(locationListener);
+        runMainLoop = false;
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
     }
 
     private void notifyOnDestroy() {

@@ -12,8 +12,9 @@ abstract public class AbstractChainedLocationProvider implements LocationProvide
 
     private LocationProvider nextProvider;
 
-    public void setNext(LocationProvider nextProvider) {
+    public AbstractChainedLocationProvider setNext(AbstractChainedLocationProvider nextProvider) {
         this.nextProvider = nextProvider;
+        return this;
     }
 
     abstract protected Location provideLocation();

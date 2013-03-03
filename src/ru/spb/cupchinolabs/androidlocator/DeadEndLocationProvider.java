@@ -16,7 +16,7 @@ public class DeadEndLocationProvider extends AbstractChainedLocationProvider {
     }
 
     @Override
-    public void setNext(LocationProvider nextProvider) {
+    public AbstractChainedLocationProvider setNext(AbstractChainedLocationProvider nextProvider) {
         throw new UnsupportedOperationException("You can't set next provider to DeadEndLocationProvider");
     }
 }

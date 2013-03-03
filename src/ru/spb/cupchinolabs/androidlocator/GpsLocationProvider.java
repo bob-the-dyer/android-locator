@@ -17,16 +17,18 @@ import static ru.spb.cupchinolabs.androidlocator.Utils.print;
 public class GpsLocationProvider extends AbstractChainedLocationProvider {
 
     private LocationManager locationManager;
+    private int timeout;
 
-    public GpsLocationProvider(LocationManager locationManager) {
+    public GpsLocationProvider(LocationManager locationManager, int timeout) {
         this.locationManager = locationManager;
+        this.timeout = timeout;
     }
 
     @Override
     protected Location provideLocation() {
 
         final Location[] lastLocation = new Location[1];
-//
+
 //        LocationListener locationListener = new LocationListener() {
 //
 //            private static final String TAG = "LocationMonitorListener";
@@ -49,10 +51,10 @@ public class GpsLocationProvider extends AbstractChainedLocationProvider {
 //            }
 //        };
 //
-//        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+//        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
 //
 //        try {
-//            Thread.sleep(5 * 1000);
+//            Thread.sleep(timeout * 1000);
 //        } catch (InterruptedException e) {
 //            Thread.currentThread().interrupt();
 //        }
