@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import ru.spb.cupchinolabs.androidlocator.Utils;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 import static ru.spb.cupchinolabs.androidlocator.Utils.print;
 
 /**
@@ -34,15 +36,15 @@ public class ProviderOrientedLocator extends AbstractChainedLocator {
     @Override
     protected Location locateImpl() {
 
-        final Location[] locationHolder = new Location[1];
+        final AtomicReference<Location> reference = new AtomicReference<>();
 
-        final LocationListener locationListener =
-                new OnLocationChangedListener(locationHolder, providerName);
+        final LocationListener listener =
+                new LocationUpdatesListener(reference, providerName);
 
         handler.post(new Runnable() {
             @Override
             public void run() {
-                locationManager.requestLocationUpdates(providerName, 0, 0, locationListener);
+                locationManager.requestLocationUpdates(providerName, 0, 0, listener);
             }
         });
 
@@ -55,27 +57,28 @@ public class ProviderOrientedLocator extends AbstractChainedLocator {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                locationManager.removeUpdates(locationListener);
+                locationManager.removeUpdates(listener);
             }
         });
 
-        return locationHolder[0];
+        return reference.get();
     }
 
-    private static class OnLocationChangedListener implements LocationListener {
+    private static class LocationUpdatesListener implements LocationListener {
 
         private final String TAG;
-        private final Location[] locationHolder;
+        private final AtomicReference<Location> locationHolder;
 
-        public OnLocationChangedListener(Location[] locationHolder, String providerName) {
+        public LocationUpdatesListener(AtomicReference<Location> locationHolder, String providerName) {
             this.locationHolder = locationHolder;
             TAG = ProviderOrientedLocator.TAG + "-listener-" + providerName;
         }
 
         public void onLocationChanged(Location location) {
             print("onLocationChanged:" + location, null, TAG);
-            if (Utils.isBetterLocation(location, locationHolder[0])) {
-                locationHolder[0] = location;
+
+            if (Utils.isBetterLocation(location, locationHolder.get())) {
+                locationHolder.set(location);
             }
         }
 
