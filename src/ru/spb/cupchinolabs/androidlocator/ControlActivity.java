@@ -9,16 +9,16 @@ import android.widget.ToggleButton;
 
 import static ru.spb.cupchinolabs.androidlocator.Utils.print;
 
-public class LocationMonitorActivity extends Activity {
+public class ControlActivity extends Activity {
 
-    private static final String TAG = LocationMonitorActivity.class.getSimpleName();
+    private static final String TAG = ControlActivity.class.getSimpleName();
 
     private static final String IS_ON = "IS_ON";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.location_monitor_control);
+        setContentView(R.layout.control_activity);
 
         ((ToggleButton) findViewById(R.id.togglebutton))
                 .setChecked(getPreferences(Context.MODE_PRIVATE).getBoolean(IS_ON, false));
@@ -53,9 +53,9 @@ public class LocationMonitorActivity extends Activity {
     public void onToggleClicked(View view) {
         boolean on = ((ToggleButton) view).isChecked();
         if (on) {
-            startService(new Intent(LocationMonitorService.class.getName()));
+            startService(new Intent(LocatorService.class.getName()));
         } else {
-            stopService(new Intent(LocationMonitorService.class.getName()));
+            stopService(new Intent(LocatorService.class.getName()));
         }
         print("onToggleClicked:" + on, null, TAG);
     }

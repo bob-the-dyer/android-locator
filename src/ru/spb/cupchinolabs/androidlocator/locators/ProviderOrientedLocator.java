@@ -1,10 +1,11 @@
-package ru.spb.cupchinolabs.androidlocator;
+package ru.spb.cupchinolabs.androidlocator.locators;
 
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
+import ru.spb.cupchinolabs.androidlocator.Utils;
 
 import static ru.spb.cupchinolabs.androidlocator.Utils.print;
 
@@ -14,16 +15,16 @@ import static ru.spb.cupchinolabs.androidlocator.Utils.print;
  * Date: 03.03.13
  * Time: 15:11
  */
-public class LocationServiceProvider extends AbstractChainedLocationProvider {
+public class ProviderOrientedLocator extends AbstractChainedLocator {
 
-    private static final String TAG = LocationServiceProvider.class.getSimpleName();
+    private static final String TAG = ProviderOrientedLocator.class.getSimpleName();
 
     private final String providerName;
     private final LocationManager locationManager;
     private final Handler handler;
     private final int timeout;
 
-    public LocationServiceProvider(String providerName, LocationManager locationManager, Handler handler, int timeout) {
+    public ProviderOrientedLocator(String providerName, LocationManager locationManager, Handler handler, int timeout) {
         this.providerName = providerName;
         this.locationManager = locationManager;
         this.handler = handler;
@@ -31,7 +32,7 @@ public class LocationServiceProvider extends AbstractChainedLocationProvider {
     }
 
     @Override
-    protected Location provideLocation() {
+    protected Location locateImpl() {
 
         final Location[] locationHolder = new Location[1];
 
@@ -68,12 +69,14 @@ public class LocationServiceProvider extends AbstractChainedLocationProvider {
 
         public OnLocationChangedListener(Location[] locationHolder) {
             this.locationHolder = locationHolder;
-            TAG = LocationServiceProvider.TAG + "-listener-" + providerName;
+            TAG = ProviderOrientedLocator.TAG + "-listener-" + providerName;
         }
 
         public void onLocationChanged(Location location) {
             print("onLocationChanged:" + location, null, TAG);
-            locationHolder[0] = location;
+            if (Utils.isBetterLocation(location, locationHolder[0])) {
+                locationHolder[0] = location;
+            }
         }
 
         public void onStatusChanged(String provider, int status, Bundle extras) {

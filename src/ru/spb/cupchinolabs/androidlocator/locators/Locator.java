@@ -1,4 +1,4 @@
-package ru.spb.cupchinolabs.androidlocator;
+package ru.spb.cupchinolabs.androidlocator.locators;
 
 import android.location.Location;
 
@@ -8,8 +8,8 @@ import android.location.Location;
  * Date: 03.03.13
  * Time: 14:58
  */
-public interface LocationProvider {
+public interface Locator {
 
-    Location get();
+    Location locate();
 
 }

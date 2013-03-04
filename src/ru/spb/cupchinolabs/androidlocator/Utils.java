@@ -19,18 +19,20 @@ public class Utils {
 
     private static final int TWO_MINUTES = 1000 * 60 * 2;
 
-    public static void print(String text, Context context, String tag){
-        if (TOASTS_ENABLED && context != null){
+    public static void print(String text, Context context, String tag) {
+        if (TOASTS_ENABLED && context != null) {
             Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
         }
-        if (LOGS_ENABLED){
+        if (LOGS_ENABLED) {
             Log.d(tag, text);
         }
     }
 
-    /** Determines whether one Location reading is better than the current Location fix
-     * @param location  The new Location that you want to evaluate
-     * @param currentBestLocation  The current Location fix, to which you want to compare the new one
+    /**
+     * Determines whether one Location reading is better than the current Location fix
+     *
+     * @param location            The new Location that you want to evaluate
+     * @param currentBestLocation The current Location fix, to which you want to compare the new one
      */
     public static boolean isBetterLocation(Location location, Location currentBestLocation) {
         if (currentBestLocation == null) {
@@ -74,7 +76,9 @@ public class Utils {
         return false;
     }
 
-    /** Checks whether two providers are the same */
+    /**
+     * Checks whether two providers are the same
+     */
     private static boolean isSameProvider(String provider1, String provider2) {
         if (provider1 == null) {
             return provider2 == null;

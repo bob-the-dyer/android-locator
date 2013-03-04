@@ -8,7 +8,7 @@
     <!--<uses-permission android:name="android.permission.INTERNET"/>-->
     <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>-->
     <application android:label="@string/app_name">
-        <activity android:name=".LocationMonitorActivity"
+        <activity android:name=".ControlActivity"
                   android:label="@string/app_name"
                   android:launchMode="singleTask"
                   android:allowTaskReparenting="true"
@@ -20,12 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <service android:name=".LocationMonitorService"
-                 android:label="locationMonitorService"
+        <service android:name=".LocatorService"
+                 android:label="locatorService"
                  android:exported="false"
-                 android:process=":LocationMonitorService">
+                 android:process=":LocatorService">
             <intent-filter>
-                <action android:name="ru.spb.cupchinolabs.androidlocator.LocationMonitorService"/>
+                <action android:name="ru.spb.cupchinolabs.androidlocator.LocatorService"/>
             </intent-filter>
         </service>
     </application>
