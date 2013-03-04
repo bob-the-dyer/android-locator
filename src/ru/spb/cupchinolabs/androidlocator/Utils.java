@@ -29,6 +29,10 @@ public class Utils {
     }
 
     /**
+     **********************************************************
+     * THIS METHOD WAS COPY-PASTED FROM GOOGLE REFERENCE DOCS *
+     **********************************************************
+     *
      * Determines whether one Location reading is better than the current Location fix
      *
      * @param location            The new Location that you want to evaluate

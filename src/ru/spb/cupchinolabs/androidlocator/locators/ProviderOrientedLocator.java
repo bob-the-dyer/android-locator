@@ -37,7 +37,7 @@ public class ProviderOrientedLocator extends AbstractChainedLocator {
         final Location[] locationHolder = new Location[1];
 
         final LocationListener locationListener =
-                new OnLocationChangedListener(locationHolder);
+                new OnLocationChangedListener(locationHolder, providerName);
 
         handler.post(new Runnable() {
             @Override
@@ -62,12 +62,12 @@ public class ProviderOrientedLocator extends AbstractChainedLocator {
         return locationHolder[0];
     }
 
-    private class OnLocationChangedListener implements LocationListener {
+    private static class OnLocationChangedListener implements LocationListener {
 
         private final String TAG;
         private final Location[] locationHolder;
 
-        public OnLocationChangedListener(Location[] locationHolder) {
+        public OnLocationChangedListener(Location[] locationHolder, String providerName) {
             this.locationHolder = locationHolder;
             TAG = ProviderOrientedLocator.TAG + "-listener-" + providerName;
         }
