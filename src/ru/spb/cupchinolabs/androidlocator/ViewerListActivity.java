@@ -81,6 +81,7 @@ public class ViewerListActivity extends ListActivity {
                             public void run() {
                                 cursorAdapter.changeCursor(newCursor);
                                 cursorAdapter.notifyDataSetChanged();
+                                //TODO think of adding new entries to current underlying model instead of new cursor
                             }
                         });
                         return null;
