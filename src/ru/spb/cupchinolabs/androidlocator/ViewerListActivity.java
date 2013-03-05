@@ -58,14 +58,14 @@ public class ViewerListActivity extends ListActivity {
         Cursor cursor = createNewCursor();
 
         if (null == cursor) {
-            Log.d(TAG, "error occurred, returning null cursor");
+            throw new IllegalStateException("error occurred -> provider is returning null as a cursor, URI is wrong");
         } else if (cursor.getCount() < 1) {
             Log.d(TAG, "cursor returns an empty result");
             //TODO show empty message
-        } else {
-            cursorAdapter = new SimpleCursorAdapter(this, R.layout.viewer_list_entry, cursor, FROM_COLUMNS, TO_IDS);
-            setListAdapter(cursorAdapter);
         }
+
+        cursorAdapter = new SimpleCursorAdapter(this, R.layout.viewer_list_entry, cursor, FROM_COLUMNS, TO_IDS);
+        setListAdapter(cursorAdapter);
 
         contentObserver = new ContentObserver(handler) {
             @Override
