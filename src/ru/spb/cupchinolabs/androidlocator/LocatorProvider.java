@@ -26,10 +26,10 @@ import static ru.spb.cupchinolabs.androidlocator.LocatorProviderContract.Locatio
  * <p/>
  * TODO rework to store locations in SQLite instead of in memory or in file
  * <p/>
- * TODO think of a better solution for provider's thread safety
+ * TODO think of a better solution for provider's thread safety instead of sync methods
  * <p/>
- * TODO seems like this provider survives longer then I expect, clarify ContentProvider lifecycle.
- * Test case: locator on, then off and back button -> app is expected to be closed? provider is still alive
+ * TODO seems like this provider survives longer then I expect, clarify ContentProvider lifecycle ( Test case:
+ * locator on, then off and back button -> app is expected to be closed? provider is still alive )
  */
 public class LocatorProvider extends ContentProvider {
 
@@ -47,13 +47,13 @@ public class LocatorProvider extends ContentProvider {
         uriMatcher.addURI(AUTHORITY, LOCATION_TABLE_NAME, 1);
         uriMatcher.addURI(AUTHORITY, LOCATION_TABLE_NAME + "/#", 2);
 
-        locations = new ArrayList<>(); //TODO initialization to be delayed to first query
+        locations = new ArrayList<>(); //TODO initialization should be postponed to first query request
         return true;
     }
 
     @Override
     public synchronized Cursor query(Uri uri, String[] projections, String selection, String[] selectionArgs, String sortOrder) {
-        Log.d(TAG, "query");
+        Log.d(TAG, "query, uri = " + uri);
 
         //TODO check whether locations was initialized, if not -> read the file and initialize locations from file, if there is no file -> create file
 
@@ -81,6 +81,7 @@ public class LocatorProvider extends ContentProvider {
                 break;
             default: {
                 //TODO handle unsupported URI
+                throw new IllegalArgumentException("This URI was not matched: " + uri);
             }
         }
         return matrixCursor;
@@ -147,12 +148,12 @@ public class LocatorProvider extends ContentProvider {
 
     @Override
     public int delete(Uri uri, String s, String[] strings) {
-        throw new IllegalArgumentException("delete is not supported"); //IAE is supported by Android for IPC
+        throw new IllegalArgumentException("delete is not supported");
     }
 
     @Override
     public int update(Uri uri, ContentValues contentValues, String s, String[] strings) {
-        throw new IllegalArgumentException("update is not supported"); //IAE is supported by Android for IPC
+        throw new IllegalArgumentException("update is not supported");
     }
 
     @Override

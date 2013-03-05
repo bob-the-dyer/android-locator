@@ -37,59 +37,34 @@ public class ViewerListActivity extends ListActivity {
             LocatorProviderContract.Location.LONGITUDE
     };
 
+    private final static int[] TO_IDS = {
+            R.id.time,
+            R.id.provider,
+            R.id.latitude,
+            R.id.longitude
+    };
+
     private ContentObserver contentObserver;
-
     private CursorAdapter cursorAdapter;
-
     private Handler handler;
-
-    private final static int[] TO_IDS = {R.id.time, R.id.provider, R.id.latitude, R.id.longitude};
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate");
-
         if (savedInstanceState != null) {
             //TODO restore current position in list
         }
-
         handler = new Handler();
-
         Cursor cursor = createNewCursor();
-
         if (null == cursor) {
             throw new IllegalStateException("error occurred -> provider is returning null as a cursor, URI is wrong");
         } else if (cursor.getCount() < 1) {
             Log.d(TAG, "cursor returns an empty result");
             //TODO show empty message
         }
-
         cursorAdapter = new SimpleCursorAdapter(this, R.layout.viewer_list_entry, cursor, FROM_COLUMNS, TO_IDS);
         setListAdapter(cursorAdapter);
-
-        contentObserver = new ContentObserver(handler) {
-            @Override
-            public void onChange(boolean selfChange) {
-                super.onChange(selfChange);
-                Log.d(TAG + "-ContentObserver", "onChange");
-                new AsyncTask() {
-                    @Override
-                    protected Object doInBackground(Object... objects) {
-                        final Cursor newCursor = createNewCursor();
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                cursorAdapter.changeCursor(newCursor);
-                                cursorAdapter.notifyDataSetChanged();
-                                //TODO think of adding new entries to current underlying model instead of new cursor
-                            }
-                        });
-                        return null;
-                    }
-                }.execute();
-            }
-        };
-
+        contentObserver = new ProviderContentObserver();
         getContentResolver().registerContentObserver(PARSED_LOCATION_URI, true, contentObserver);
     }
 
@@ -120,5 +95,32 @@ public class ViewerListActivity extends ListActivity {
         contentObserver = null;
         cursorAdapter = null;
         handler = null;
+    }
+
+    private class ProviderContentObserver extends ContentObserver {
+        public ProviderContentObserver() {
+            super(ViewerListActivity.this.handler);
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            super.onChange(selfChange);
+            Log.d(TAG + "-ContentObserver", "onChange");
+            new AsyncTask() {
+                @Override
+                protected Object doInBackground(Object... objects) {
+                    final Cursor newCursor = createNewCursor();
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            cursorAdapter.changeCursor(newCursor);
+                            cursorAdapter.notifyDataSetChanged();
+                            //TODO think of adding inserted entries to current underlying model instead of new cursor
+                        }
+                    });
+                    return null;
+                }
+            }.execute();
+        }
     }
 }
