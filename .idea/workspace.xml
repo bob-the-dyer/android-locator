@@ -12,22 +12,15 @@
       </GlobalState>
     </option>
   </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="ViewerListActivity" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="9aaf2011-bafd-4ec6-93e6-9e07319556d9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/viewer_activity.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/viewer_list_entry.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/ViewerListActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/LocationVO.java" />
-      <change type="DELETED" beforePath="C:\Users\VladimirK\IdeaProjects\android-locator\src\ru\spb\cupchinolabs\androidlocator\ViewerActivity.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/ru/spb/cupchinolabs/androidlocator/BuildConfig.java" afterPath="$PROJECT_DIR$/gen/ru/spb/cupchinolabs/androidlocator/BuildConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/ru/spb/cupchinolabs/androidlocator/R.java" afterPath="$PROJECT_DIR$/gen/ru/spb/cupchinolabs/androidlocator/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/control_activity.xml" afterPath="$PROJECT_DIR$/res/layout/control_activity.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/ControlActivity.java" afterPath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/ControlActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/viewer_list_entry.xml" afterPath="$PROJECT_DIR$/res/layout/viewer_list_entry.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocatorProvider.java" afterPath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocatorProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/Utils.java" afterPath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/Utils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/ViewerListActivity.java" afterPath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/ViewerListActivity.java" />
     </list>
     <ignored path="android-locator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,21 +38,6 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <line_breakpoints>
-      <breakpoint url="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/ViewerListActivity.java" line="27" class="ru.spb.cupchinolabs.androidlocator.ViewerActivity" package="ru.spb.cupchinolabs.androidlocator">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-    </line_breakpoints>
     <breakpoint_any>
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -103,16 +81,7 @@
       <file leaf-file-name="LocatorProvider.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocatorProvider.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="74" selection-start="2605" selection-end="2605" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ControlActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/ControlActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="41" selection-start="1792" selection-end="1792" vertical-scroll-proportion="0.0">
+            <state line="141" column="8" selection-start="4598" selection-end="4598" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -130,7 +99,7 @@
       <file leaf-file-name="LocatorProviderContract.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocatorProviderContract.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="35" selection-start="741" selection-end="741" vertical-scroll-proportion="0.0">
+            <state line="13" column="31" selection-start="439" selection-end="439" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -145,19 +114,39 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="viewer_list_entry.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="viewer_list_entry.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/layout/viewer_list_entry.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="43" selection-start="255" selection-end="255" vertical-scroll-proportion="0.13076924">
+            <state line="25" column="93" selection-start="806" selection-end="806" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ViewerListActivity.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ViewerListActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/ViewerListActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="12" selection-start="1531" selection-end="1531" vertical-scroll-proportion="0.0">
+            <state line="13" column="65" selection-start="341" selection-end="341" vertical-scroll-proportion="0.25667828">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LocatorService.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocatorService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="68" column="29" selection-start="2248" selection-end="2248" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProviderOrientedLocator.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/ProviderOrientedLocator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="31" column="14" selection-start="1020" selection-end="1020" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -209,10 +198,10 @@
         <option value="$PROJECT_DIR$/res/layout/control_activity.xml" />
         <option value="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/ControlActivity.java" />
         <option value="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/ViewerActivity.java" />
-        <option value="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocatorProvider.java" />
         <option value="$PROJECT_DIR$/res/layout/viewer_entry.xml" />
-        <option value="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/ViewerListActivity.java" />
         <option value="$PROJECT_DIR$/res/layout/viewer_list_entry.xml" />
+        <option value="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocatorProvider.java" />
+        <option value="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/ViewerListActivity.java" />
       </list>
     </option>
   </component>
@@ -706,7 +695,11 @@
       <created>1362437104059</created>
       <updated>1362437104059</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary=" - adding location viewer&#10; - fix provider">
+      <created>1362479054312</created>
+      <updated>1362479054312</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -718,23 +711,23 @@
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.76710814" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3432671" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20750552" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.48844886" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32781458" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2869757" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47130242" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23100491" sideWeight="0.76710814" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23289183" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23072216" sideWeight="0.52869755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15116279" sideWeight="0.52869755" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23289183" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.72596157" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32903227" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15177478" sideWeight="0.7560706" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -775,7 +768,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="placing AtomicReference instead of new Location[1]" />
+    <option name="LAST_COMMIT_MESSAGE" value=" - adding location viewer&#10; - fix provider" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -807,6 +800,7 @@
     <MESSAGE value=" - creating provider&#10; - starting creation of list view" />
     <MESSAGE value=" - fix implicit reference in inner class&#10; - adding reference to code origin" />
     <MESSAGE value="placing AtomicReference instead of new Location[1]" />
+    <MESSAGE value=" - adding location viewer&#10; - fix provider" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -816,30 +810,9 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/Locator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="17" selection-start="197" selection-end="197" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="56" selection-start="1721" selection-end="1721" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/control_activity.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="0" selection-start="653" selection-end="653" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocatorProviderContract.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="35" selection-start="741" selection-end="741" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -868,13 +841,6 @@
     <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/ControlActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="63" column="41" selection-start="1792" selection-end="1792" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocatorProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="74" selection-start="2605" selection-end="2605" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -914,19 +880,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/ViewerListActivity.java">
+    <entry file="file://$PROJECT_DIR$/res/layout/viewer_list_entry.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="12" selection-start="1531" selection-end="1531" vertical-scroll-proportion="0.0">
+        <state line="25" column="93" selection-start="806" selection-end="806" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocatorProviderContract.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="31" selection-start="439" selection-end="439" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocatorService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="68" column="29" selection-start="2248" selection-end="2248" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/ProviderOrientedLocator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="14" selection-start="1020" selection-end="1020" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/viewer_list_entry.xml">
+    <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocatorProvider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="43" selection-start="255" selection-end="255" vertical-scroll-proportion="0.13076924">
+        <state line="141" column="8" selection-start="4598" selection-end="4598" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/ViewerListActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="65" selection-start="341" selection-end="341" vertical-scroll-proportion="0.25667828">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

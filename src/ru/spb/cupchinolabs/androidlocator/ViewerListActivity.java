@@ -1,6 +1,7 @@
 package ru.spb.cupchinolabs.androidlocator;
 
 import android.app.ListActivity;
+import android.database.ContentObserver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +17,10 @@ import android.widget.SimpleCursorAdapter;
 public class ViewerListActivity extends ListActivity {
 
     public static final String TAG = ViewerListActivity.class.getSimpleName();
+    public static final Uri PARSED_LOCATION_URI = Uri.parse(LocatorProviderContract.LOCATION_TABLE_URI);
+
+    private SimpleCursorAdapter cursorAdapter;
+    private ContentObserver contentObserver;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +31,7 @@ public class ViewerListActivity extends ListActivity {
         }
 
         Cursor cursor = getContentResolver().query(
-                Uri.parse(LocatorProviderContract.LOCATION_TABLE_URI),
+                PARSED_LOCATION_URI,
                 new String[]{
                         LocatorProviderContract.Location._ID,
                         LocatorProviderContract.Location.TIME,
@@ -38,17 +43,23 @@ public class ViewerListActivity extends ListActivity {
                 new String[]{""},
                 LocatorProviderContract.Location._ID + " DESC"); //TODO or by TIME?
 
+        contentObserver = new ContentObserver(null) {
+            @Override
+            public void onChange(boolean selfChange) {
+                super.onChange(selfChange);
+                Log.d(TAG + "-ContentObserver", "onChange");
+            }
+        };
+
+        getContentResolver().registerContentObserver(PARSED_LOCATION_URI, true, contentObserver);
+
         if (null == cursor) {
-
             Log.d(TAG, "error occurred, returning null cursor");
-
         } else if (cursor.getCount() < 1) {
-
             Log.d(TAG, "cursor returns an empty result");
-
             //TODO show empty message
         } else {
-            SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(
+            cursorAdapter = new SimpleCursorAdapter(
                     this,
                     R.layout.viewer_list_entry,
                     cursor,
@@ -58,7 +69,8 @@ public class ViewerListActivity extends ListActivity {
                             LocatorProviderContract.Location.LATITUDE,
                             LocatorProviderContract.Location.LONGITUDE
                     },
-                    new int[]{R.id.time, R.id.provider, R.id.latitude, R.id.longitude});
+                    new int[]{R.id.time, R.id.provider, R.id.latitude, R.id.longitude}) {
+            };
             setListAdapter(cursorAdapter);
             //TODO  notifyDataSetChanged()
         }
@@ -69,7 +81,6 @@ public class ViewerListActivity extends ListActivity {
         super.onStart();
         Log.d(TAG, "onStart");
         //TODO retrieve fresh list?
-
     }
 
     @Override
@@ -78,4 +89,13 @@ public class ViewerListActivity extends ListActivity {
         Log.d(TAG, "onSaveInstanceState");
         //TODO save current position in list (scroll position of a ListView?)
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy");
+        getContentResolver().unregisterContentObserver(contentObserver);
+        cursorAdapter = null;
+        contentObserver = null;
+     }
 }
