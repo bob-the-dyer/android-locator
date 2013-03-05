@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Locator</string>
-    <string name="locator_is_on_toggle_text">\nLocator \n is turned on \n</string>
-    <string name="locator_is_off_toggle_text">\nLocator \n is turned off \n</string>
-    <string name="locator_notification_ticker_text">Locator is turning on ... </string>
+    <string name="locator_is_on_toggle_text">Locator is turned on</string>
+    <string name="locator_is_off_toggle_text">Locator is turned off</string>
+    <string name="locator_notification_ticker_text">Locator is turning on …</string>
     <string name="locator_notification_content_title">Locator</string>
     <string name="locator_notification_content_text">Locator is turned on</string>
+    <string name="locator_open_viewer_button_text">View locations</string>
 </resources>

@@ -60,4 +60,9 @@ public class ControlActivity extends Activity {
         print("onToggleClicked:" + on, null, TAG);
     }
 
+    public void viewLocations(View view) {
+        Intent intent = new Intent(this, ViewerListActivity.class);
+        startActivity(intent);
+    }
+
 }

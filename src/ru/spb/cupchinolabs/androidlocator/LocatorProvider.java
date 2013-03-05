@@ -9,7 +9,9 @@ import android.location.Location;
 import android.net.Uri;
 import android.util.Log;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static ru.spb.cupchinolabs.androidlocator.LocatorProviderContract.*;
@@ -25,6 +27,9 @@ import static ru.spb.cupchinolabs.androidlocator.LocatorProviderContract.Locatio
  * TODO rework to store locations in SQLite
  * <p/>
  * TODO think of a better solution for provider's thread safety
+ *
+ * TODO seems like it survives longer then I expect, clarify ContentProvider lifecycle.
+ * Test case: locator on, then off and back button -> app is expected to be closed? provider is still alive
  */
 public class LocatorProvider extends ContentProvider {
 
@@ -40,10 +45,10 @@ public class LocatorProvider extends ContentProvider {
 
         uriMatcher = new UriMatcher(0);
 
-        uriMatcher.addURI(AUTHORITY, LOCATION_TABLE_NAME,        1);
+        uriMatcher.addURI(AUTHORITY, LOCATION_TABLE_NAME, 1);
         uriMatcher.addURI(AUTHORITY, LOCATION_TABLE_NAME + "/#", 2);
 
-        locations = new ArrayList<>();
+        locations = new ArrayList<>(); //TODO deserialize and serialize on destroy ?
         return true;
     }
 
@@ -51,22 +56,28 @@ public class LocatorProvider extends ContentProvider {
     public Cursor query(Uri uri, String[] projections, String selection, String[] selectionArgs, String sortOrder) {
         Log.d(TAG, "query");
 
+        //TODO implement sortOrder
+
+        //TODO implement selection and selectionArgs
+
         MatrixCursor matrixCursor = null;
 
         switch (uriMatcher.match(uri)) {
             case 1:
                 synchronized (locations) {
                     matrixCursor = new MatrixCursor(projections, locations.size());
-                    for (Location location : locations) {
-                        buildRow(projections, matrixCursor, location);
+                    for (int i = locations.size() - 1; i >= 0; i--) {
+                        Location location = locations.get(i);
+                        buildRow(projections, matrixCursor, location, i);
                     }
                 }
                 break;
             case 2:
                 synchronized (locations) {
                     matrixCursor = new MatrixCursor(projections, 1);
-                    Location location = locations.get(Integer.valueOf(uri.getLastPathSegment()));
-                    buildRow(projections, matrixCursor, location);
+                    int id = Integer.valueOf(uri.getLastPathSegment());
+                    Location location = locations.get(id);
+                    buildRow(projections, matrixCursor, location, id);
                 }
                 break;
             default: {
@@ -76,7 +87,7 @@ public class LocatorProvider extends ContentProvider {
         return matrixCursor;
     }
 
-    private void buildRow(String[] projections, MatrixCursor matrixCursor, Location location) {
+    private void buildRow(String[] projections, MatrixCursor matrixCursor, Location location, int id) {
         MatrixCursor.RowBuilder builder = matrixCursor.newRow();
         for (String projection : projections) {
             switch (projection) {
@@ -84,13 +95,16 @@ public class LocatorProvider extends ContentProvider {
                     builder.add(location.getProvider());
                     break;
                 case TIME:
-                    builder.add(location.getTime());
+                    builder.add(DateFormat.getDateTimeInstance().format(new Date(location.getTime())));
                     break;
                 case LONGITUDE:
                     builder.add(location.getLongitude());
                     break;
                 case LATITUDE:
                     builder.add(location.getLatitude());
+                    break;
+                case _ID:
+                    builder.add(id);
                     break;
                 default: {
                     //TODO handle not existed projection
@@ -129,11 +143,21 @@ public class LocatorProvider extends ContentProvider {
 
     @Override
     public int delete(Uri uri, String s, String[] strings) {
-        return 0;
+        throw new IllegalArgumentException("delete is not supported");
     }
 
     @Override
     public int update(Uri uri, ContentValues contentValues, String s, String[] strings) {
-        return 0;
+        throw new IllegalArgumentException("update is not supported");
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        saveMyself();
+    }
+
+    private void saveMyself() {
+        Log.d(TAG, "saveMyself");
     }
 }
