@@ -36,8 +36,8 @@ public class LocatorService extends Service {
 
     private static final String TAG = LocatorService.class.getSimpleName();
 
-    private static final int REPEAT_TASK_INTERVAL_IN_SEC = 5;
-    private static final int WAIT_FOR_PROVIDER_TIMEOUT_IN_SEC = 5;
+    private static final int REPEAT_TASK_INTERVAL_IN_SEC = 10;
+    private static final int WAIT_FOR_PROVIDER_TIMEOUT_IN_SEC = 2;
 
     private Handler handler;
     private Timer timer;

@@ -53,6 +53,8 @@ public class ViewerListActivity extends ListActivity {
             //TODO restore current position in list
         }
 
+        handler = new Handler();
+
         Cursor cursor = createNewCursor();
 
         if (null == cursor) {
@@ -65,15 +67,25 @@ public class ViewerListActivity extends ListActivity {
             setListAdapter(cursorAdapter);
         }
 
-        handler = new Handler();
-
         contentObserver = new ContentObserver(handler) {
             @Override
             public void onChange(boolean selfChange) {
                 super.onChange(selfChange);
                 Log.d(TAG + "-ContentObserver", "onChange");
-                cursorAdapter.changeCursor(createNewCursor());
-                cursorAdapter.notifyDataSetChanged();
+                new AsyncTask() {
+                    @Override
+                    protected Object doInBackground(Object... objects) {
+                        final Cursor newCursor = createNewCursor();
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                cursorAdapter.changeCursor(newCursor);
+                                cursorAdapter.notifyDataSetChanged();
+                            }
+                        });
+                        return null;
+                    }
+                }.execute();
             }
         };
 
@@ -104,8 +116,8 @@ public class ViewerListActivity extends ListActivity {
         super.onDestroy();
         Log.d(TAG, "onDestroy");
         getContentResolver().unregisterContentObserver(contentObserver);
-        cursorAdapter = null;
         contentObserver = null;
+        cursorAdapter = null;
         handler = null;
     }
 }
