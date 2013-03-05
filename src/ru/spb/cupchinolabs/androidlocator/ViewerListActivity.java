@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.CursorAdapter;
 import android.widget.SimpleCursorAdapter;
 
 /**
@@ -16,11 +17,29 @@ import android.widget.SimpleCursorAdapter;
  */
 public class ViewerListActivity extends ListActivity {
 
-    public static final String TAG = ViewerListActivity.class.getSimpleName();
-    public static final Uri PARSED_LOCATION_URI = Uri.parse(LocatorProviderContract.LOCATION_TABLE_URI);
+    private static final String TAG = ViewerListActivity.class.getSimpleName();
+    private static final Uri PARSED_LOCATION_URI = Uri.parse(LocatorProviderContract.LOCATION_TABLE_URI);
 
-    private SimpleCursorAdapter cursorAdapter;
+    private final static String[] PROJECTION = {
+            LocatorProviderContract.Location._ID,
+            LocatorProviderContract.Location.TIME,
+            LocatorProviderContract.Location.LATITUDE,
+            LocatorProviderContract.Location.LONGITUDE,
+            LocatorProviderContract.Location.PROVIDER
+    };
+
+    private final static String[] FROM_COLUMNS = {
+            LocatorProviderContract.Location.TIME,
+            LocatorProviderContract.Location.PROVIDER,
+            LocatorProviderContract.Location.LATITUDE,
+            LocatorProviderContract.Location.LONGITUDE
+    };
+
     private ContentObserver contentObserver;
+
+    private CursorAdapter cursorAdapter;
+
+    private final static int[] TO_IDS = {R.id.time, R.id.provider, R.id.latitude, R.id.longitude};
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,19 +48,6 @@ public class ViewerListActivity extends ListActivity {
         if (savedInstanceState != null) {
             //TODO restore current position in list
         }
-
-        Cursor cursor = getContentResolver().query(
-                PARSED_LOCATION_URI,
-                new String[]{
-                        LocatorProviderContract.Location._ID,
-                        LocatorProviderContract.Location.TIME,
-                        LocatorProviderContract.Location.LATITUDE,
-                        LocatorProviderContract.Location.LONGITUDE,
-                        LocatorProviderContract.Location.PROVIDER
-                },
-                null,
-                new String[]{""},
-                LocatorProviderContract.Location._ID + " DESC"); //TODO or by TIME?
 
         contentObserver = new ContentObserver(null) {
             @Override
@@ -53,26 +59,17 @@ public class ViewerListActivity extends ListActivity {
 
         getContentResolver().registerContentObserver(PARSED_LOCATION_URI, true, contentObserver);
 
+        Cursor cursor = getContentResolver().query(
+                PARSED_LOCATION_URI, PROJECTION, null, new String[]{""}, LocatorProviderContract.Location._ID + " DESC");
+
         if (null == cursor) {
             Log.d(TAG, "error occurred, returning null cursor");
         } else if (cursor.getCount() < 1) {
             Log.d(TAG, "cursor returns an empty result");
             //TODO show empty message
         } else {
-            cursorAdapter = new SimpleCursorAdapter(
-                    this,
-                    R.layout.viewer_list_entry,
-                    cursor,
-                    new String[]{
-                            LocatorProviderContract.Location.TIME,
-                            LocatorProviderContract.Location.PROVIDER,
-                            LocatorProviderContract.Location.LATITUDE,
-                            LocatorProviderContract.Location.LONGITUDE
-                    },
-                    new int[]{R.id.time, R.id.provider, R.id.latitude, R.id.longitude}) {
-            };
+            cursorAdapter = new SimpleCursorAdapter(this, R.layout.viewer_list_entry, cursor, FROM_COLUMNS, TO_IDS);
             setListAdapter(cursorAdapter);
-            //TODO  notifyDataSetChanged()
         }
     }
 
@@ -97,5 +94,5 @@ public class ViewerListActivity extends ListActivity {
         getContentResolver().unregisterContentObserver(contentObserver);
         cursorAdapter = null;
         contentObserver = null;
-     }
+    }
 }

@@ -24,11 +24,11 @@ import static ru.spb.cupchinolabs.androidlocator.LocatorProviderContract.Locatio
  * Time: 23:30
  * <p/>
  * <p/>
- * TODO rework to store locations in SQLite
+ * TODO rework to store locations in SQLite instead of in memory or in file
  * <p/>
  * TODO think of a better solution for provider's thread safety
  * <p/>
- * TODO seems like it survives longer then I expect, clarify ContentProvider lifecycle.
+ * TODO seems like this provider survives longer then I expect, clarify ContentProvider lifecycle.
  * Test case: locator on, then off and back button -> app is expected to be closed? provider is still alive
  */
 public class LocatorProvider extends ContentProvider {
@@ -44,11 +44,10 @@ public class LocatorProvider extends ContentProvider {
         Log.d(TAG, "onCreate");
 
         uriMatcher = new UriMatcher(0);
-
         uriMatcher.addURI(AUTHORITY, LOCATION_TABLE_NAME, 1);
         uriMatcher.addURI(AUTHORITY, LOCATION_TABLE_NAME + "/#", 2);
 
-        locations = new ArrayList<>(); //TODO deserialize and serialize on insert
+        locations = new ArrayList<>(); //TODO initialization to be delayed to first query
         return true;
     }
 
@@ -56,7 +55,7 @@ public class LocatorProvider extends ContentProvider {
     public synchronized Cursor query(Uri uri, String[] projections, String selection, String[] selectionArgs, String sortOrder) {
         Log.d(TAG, "query");
 
-        //TODO check whether locations was initialized, if not -> read the file, if there is no file -> create file -> open a handle
+        //TODO check whether locations was initialized, if not -> read the file and initialize locations from file, if there is no file -> create file
 
         //TODO implement sortOrder
 
@@ -120,8 +119,6 @@ public class LocatorProvider extends ContentProvider {
     public synchronized Uri insert(Uri uri, ContentValues contentValues) {
         Log.d(TAG, "insert");
 
-        //TODO if no file -> create file and initialize handle
-
         int index;
 
         Location location = new Location(contentValues.getAsString(PROVIDER));
@@ -137,7 +134,9 @@ public class LocatorProvider extends ContentProvider {
         Log.d(TAG, "inserted location->" + location);
         Log.d(TAG, "locations.size()->" + locations.size());
 
-        //TODO write to the file asynchronously
+        //TODO if no file -> create file and initialize handle
+        //TODO write to the file asynchronously but via queue to ensure order
+        //TODO close file
 
         getContext().getContentResolver().notifyChange(uri, null);
 
