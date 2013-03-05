@@ -61,6 +61,8 @@ public class LocatorProvider extends ContentProvider {
 
         //TODO implement selection and selectionArgs
 
+        //TODO support TOP for paging
+
         MatrixCursor matrixCursor = null;
 
         switch (uriMatcher.match(uri)) {
@@ -134,7 +136,7 @@ public class LocatorProvider extends ContentProvider {
         Log.d(TAG, "inserted location->" + location);
         Log.d(TAG, "locations.size()->" + locations.size());
 
-        //TODO if no file -> create file and initialize handle
+        //TODO if no file exists -> create file and initialize handle
         //TODO write to the file asynchronously but via queue to ensure order
         //TODO close file
 
@@ -145,12 +147,12 @@ public class LocatorProvider extends ContentProvider {
 
     @Override
     public int delete(Uri uri, String s, String[] strings) {
-        throw new IllegalArgumentException("delete is not supported");
+        throw new IllegalArgumentException("delete is not supported"); //IAE is supported by Android for IPC
     }
 
     @Override
     public int update(Uri uri, ContentValues contentValues, String s, String[] strings) {
-        throw new IllegalArgumentException("update is not supported");
+        throw new IllegalArgumentException("update is not supported"); //IAE is supported by Android for IPC
     }
 
     @Override
@@ -160,6 +162,6 @@ public class LocatorProvider extends ContentProvider {
     }
 
     private void saveMyself() {
-        Log.d(TAG, "saveMyself");
+        Log.d(TAG, "in saveMyself");
     }
 }

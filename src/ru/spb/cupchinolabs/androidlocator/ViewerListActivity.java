@@ -4,7 +4,9 @@ import android.app.ListActivity;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.CursorAdapter;
 import android.widget.SimpleCursorAdapter;
@@ -39,6 +41,8 @@ public class ViewerListActivity extends ListActivity {
 
     private CursorAdapter cursorAdapter;
 
+    private Handler handler;
+
     private final static int[] TO_IDS = {R.id.time, R.id.provider, R.id.latitude, R.id.longitude};
 
     public void onCreate(Bundle savedInstanceState) {
@@ -49,18 +53,7 @@ public class ViewerListActivity extends ListActivity {
             //TODO restore current position in list
         }
 
-        contentObserver = new ContentObserver(null) {
-            @Override
-            public void onChange(boolean selfChange) {
-                super.onChange(selfChange);
-                Log.d(TAG + "-ContentObserver", "onChange");
-            }
-        };
-
-        getContentResolver().registerContentObserver(PARSED_LOCATION_URI, true, contentObserver);
-
-        Cursor cursor = getContentResolver().query(
-                PARSED_LOCATION_URI, PROJECTION, null, new String[]{""}, LocatorProviderContract.Location._ID + " DESC");
+        Cursor cursor = createNewCursor();
 
         if (null == cursor) {
             Log.d(TAG, "error occurred, returning null cursor");
@@ -71,6 +64,25 @@ public class ViewerListActivity extends ListActivity {
             cursorAdapter = new SimpleCursorAdapter(this, R.layout.viewer_list_entry, cursor, FROM_COLUMNS, TO_IDS);
             setListAdapter(cursorAdapter);
         }
+
+        handler = new Handler();
+
+        contentObserver = new ContentObserver(handler) {
+            @Override
+            public void onChange(boolean selfChange) {
+                super.onChange(selfChange);
+                Log.d(TAG + "-ContentObserver", "onChange");
+                cursorAdapter.changeCursor(createNewCursor());
+                cursorAdapter.notifyDataSetChanged();
+            }
+        };
+
+        getContentResolver().registerContentObserver(PARSED_LOCATION_URI, true, contentObserver);
+    }
+
+    private Cursor createNewCursor() {
+        return getContentResolver().query(
+                PARSED_LOCATION_URI, PROJECTION, null, new String[]{""}, LocatorProviderContract.Location._ID + " DESC");
     }
 
     @Override
@@ -94,5 +106,6 @@ public class ViewerListActivity extends ListActivity {
         getContentResolver().unregisterContentObserver(contentObserver);
         cursorAdapter = null;
         contentObserver = null;
+        handler = null;
     }
 }
