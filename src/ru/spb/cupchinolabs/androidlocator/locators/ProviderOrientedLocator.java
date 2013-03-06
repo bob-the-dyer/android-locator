@@ -5,7 +5,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
-import ru.spb.cupchinolabs.androidlocator.Utils;
+import android.util.Log;
 
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -24,22 +24,22 @@ public class ProviderOrientedLocator extends AbstractChainedLocator {
     private final String providerName;
     private final LocationManager locationManager;
     private final Handler handler;
-    private final int timeout;
+    private final int timeoutInSec;
 
-    public ProviderOrientedLocator(String providerName, LocationManager locationManager, Handler handler, int timeout) {
+    public ProviderOrientedLocator(String providerName, LocationManager locationManager, Handler handler, int timeoutInSec) {
         this.providerName = providerName;
         this.locationManager = locationManager;
         this.handler = handler;
-        this.timeout = timeout;
+        this.timeoutInSec = timeoutInSec;
     }
 
     @Override
     protected Location locateImpl() {
 
-        final AtomicReference<Location> reference = new AtomicReference<>();
+        final AtomicReference<Location> locationHolder = new AtomicReference<>();
 
         final LocationListener listener =
-                new LocationUpdatesListener(reference, providerName);
+                new LocationUpdatesListener(locationHolder, providerName, Thread.currentThread());
 
         handler.post(new Runnable() {
             @Override
@@ -49,9 +49,13 @@ public class ProviderOrientedLocator extends AbstractChainedLocator {
         });
 
         try {
-            Thread.sleep(timeout * 1000);
+            Log.d(TAG, "start sleeping");
+
+            Thread.sleep(timeoutInSec * 1000);
+
+            Log.d(TAG, "stop sleeping");
         } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+            Log.d(TAG, "interrupted");
         }
 
         handler.post(new Runnable() {
@@ -61,25 +65,25 @@ public class ProviderOrientedLocator extends AbstractChainedLocator {
             }
         });
 
-        return reference.get();
+        return locationHolder.get();
     }
 
     private static class LocationUpdatesListener implements LocationListener {
 
         private final String TAG;
         private final AtomicReference<Location> locationHolder;
+        private Thread parentThread;
 
-        public LocationUpdatesListener(AtomicReference<Location> locationHolder, String providerName) {
+        public LocationUpdatesListener(AtomicReference<Location> locationHolder, String providerName, Thread parentThread) {
             this.locationHolder = locationHolder;
+            this.parentThread = parentThread;
             TAG = ProviderOrientedLocator.TAG + "-listener-" + providerName;
         }
 
         public void onLocationChanged(Location location) {
             print("onLocationChanged:" + location, null, TAG);
-
-            if (Utils.isBetterLocation(location, locationHolder.get())) {
-                locationHolder.set(location);
-            }
+            // TODO use Utils.isBetterLocation(location, locationHolder.get())
+            locationHolder.set(location);
         }
 
         public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -92,6 +96,7 @@ public class ProviderOrientedLocator extends AbstractChainedLocator {
 
         public void onProviderDisabled(String provider) {
             print("onProviderDisabled:" + provider, null, TAG);
+            parentThread.interrupt();
         }
     }
 }

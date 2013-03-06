@@ -13,17 +13,13 @@
     </option>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="query, uri =" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="-listener-" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9aaf2011-bafd-4ec6-93e6-9e07319556d9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/ru/spb/cupchinolabs/androidlocator/BuildConfig.java" afterPath="$PROJECT_DIR$/gen/ru/spb/cupchinolabs/androidlocator/BuildConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/ru/spb/cupchinolabs/androidlocator/R.java" afterPath="$PROJECT_DIR$/gen/ru/spb/cupchinolabs/androidlocator/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocatorProvider.java" afterPath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocatorProvider.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocatorService.java" afterPath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocatorService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/ProviderOrientedLocator.java" afterPath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/ProviderOrientedLocator.java" />
     </list>
     <ignored path="android-locator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -99,25 +95,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ViewerListActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/ViewerListActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="0" selection-start="1695" selection-end="1695" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3713#4383#0" expanded="true" />
-                <element signature="e#3923#4316#0" expanded="true" />
-                <element signature="e#4293#4294#0" expanded="true" />
-                <element signature="e#4368#4369#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Utils.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/Utils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="23" selection-start="473" selection-end="473" vertical-scroll-proportion="0.0">
+            <state line="40" column="26" selection-start="1247" selection-end="1247" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -126,7 +107,7 @@
       <file leaf-file-name="LocatorService.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocatorService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="93" column="39" selection-start="3029" selection-end="3029" vertical-scroll-proportion="1.8919355">
+            <state line="40" column="30" selection-start="1426" selection-end="1426" vertical-scroll-proportion="0.3891273">
               <folding />
             </state>
           </provider>
@@ -150,31 +131,44 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="122" selection-start="2180" selection-end="2180" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ControlActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/ControlActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="13" selection-start="302" selection-end="302" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ProviderOrientedLocator.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/ProviderOrientedLocator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="22" selection-start="2465" selection-end="2465" vertical-scroll-proportion="0.0">
+            <state line="85" column="12" selection-start="2723" selection-end="2723" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1421#1601#0" expanded="true" />
+                <element signature="e#1590#1591#0" expanded="true" />
+                <element signature="e#1865#2016#0" expanded="true" />
+                <element signature="e#2005#2006#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="REQUIREMENTS.txt" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/REQUIREMENTS.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="21" column="36" selection-start="1137" selection-end="1137" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Locator.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/Locator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="17" selection-start="197" selection-end="197" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LocationVO.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/LocationVO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="13" selection-start="273" selection-end="273" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -196,7 +190,6 @@
         <option value="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/ProviderContract.java" />
         <option value="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/Provider.java" />
         <option value="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/Utils.java" />
-        <option value="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/ProviderOrientedLocator.java" />
         <option value="$PROJECT_DIR$/res/layout/viewer_activity.xml" />
         <option value="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/LocationVO.java" />
         <option value="$PROJECT_DIR$/res/layout/control_activity.xml" />
@@ -208,6 +201,7 @@
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocatorProvider.java" />
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/ProviderOrientedLocator.java" />
         <option value="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocatorService.java" />
       </list>
     </option>
@@ -407,7 +401,7 @@
     <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="DEBUGGABLE_DEVICE" value="S58301014e285" />
-    <property name="DEBUGGABLE_PROCESS" value="ru.spb.cupchinolabs.androidlocator" />
+    <property name="DEBUGGABLE_PROCESS" value="ru.spb.cupchinolabs.androidlocator:LocatorService" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
@@ -734,7 +728,11 @@
       <created>1362509121050</created>
       <updated>1362509121050</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="refactoring">
+      <created>1362549635571</created>
+      <updated>1362549635571</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -746,7 +744,7 @@
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.70198673" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28366446" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14569536" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.48844886" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -755,9 +753,9 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23072216" sideWeight="0.73399556" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23072216" sideWeight="0.821192" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15116279" sideWeight="0.76710814" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2660044" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17880794" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.72596157" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -850,27 +848,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files (x86)/Android/android-sdk/platforms/android-7/android.jar!/android/widget/BaseAdapter.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="16" selection-start="608" selection-end="608" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files (x86)/Android/android-sdk/platforms/android-7/android.jar!/java/util/Observable.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="13" selection-start="147" selection-end="147" vertical-scroll-proportion="0.10461538">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/REQUIREMENTS.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="36" selection-start="1137" selection-end="1137" vertical-scroll-proportion="0.5188953">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files (x86)/Android/android-sdk/platforms/android-7/android.jar!/java/lang/Void.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="56" selection-start="217" selection-end="217" vertical-scroll-proportion="0.0">
@@ -901,15 +878,6 @@
             <element signature="e#3923#4316#0" expanded="true" />
             <element signature="e#4293#4294#0" expanded="true" />
             <element signature="e#4368#4369#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/ProviderOrientedLocator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="22" selection-start="2465" selection-end="2465" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -949,13 +917,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="23" selection-start="473" selection-end="473" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="81" selection-start="574" selection-end="574" vertical-scroll-proportion="0.0">
@@ -963,9 +924,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/LocationVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="13" selection-start="273" selection-end="273" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/Locator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="17" selection-start="197" selection-end="197" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/REQUIREMENTS.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="36" selection-start="1137" selection-end="1137" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="26" selection-start="1247" selection-end="1247" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/ProviderOrientedLocator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="85" column="12" selection-start="2723" selection-end="2723" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1421#1601#0" expanded="true" />
+            <element signature="e#1590#1591#0" expanded="true" />
+            <element signature="e#1865#2016#0" expanded="true" />
+            <element signature="e#2005#2006#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocatorService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="39" selection-start="3029" selection-end="3029" vertical-scroll-proportion="1.8919355">
+        <state line="40" column="30" selection-start="1426" selection-end="1426" vertical-scroll-proportion="0.3891273">
           <folding />
         </state>
       </provider>
