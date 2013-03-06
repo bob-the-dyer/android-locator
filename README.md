@@ -1,3 +1,5 @@
-Simple location monitor based on GPS and yandex.locator service.
+android-locator
 
-Location monitor could be started and stopped. Once started it stores and shows the coordinates of android device.
+Simple location monitoring tool based on GPS, network and yandex.locator service.
+
+Monitoring could be started and stopped. Once started the tool stores and shows the coordinates of android device.
