@@ -51,9 +51,6 @@ public class ViewerListActivity extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate");
-        if (savedInstanceState != null) {
-            //TODO restore current position in list
-        }
         handler = new Handler();
         Cursor cursor = createNewCursor();
         if (null == cursor) {
@@ -78,13 +75,6 @@ public class ViewerListActivity extends ListActivity {
         super.onStart();
         Log.d(TAG, "onStart");
         //TODO retrieve fresh list?
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        Log.d(TAG, "onSaveInstanceState");
-        //TODO save current position in list (scroll position of a ListView?)
     }
 
     @Override

@@ -23,17 +23,14 @@ import static ru.spb.cupchinolabs.androidlocator.LocatorProviderContract.Locatio
  * Date: 04.03.13
  * Time: 23:30
  * <p/>
- * <p/>
- * TODO rework to store locations in SQLite instead of current in memory solution or file storage
- * <p/>
  * TODO think of a better solution for provider's thread safety instead of sync methods
  * <p/>
  * TODO seems like this provider survives longer then I expect, clarify ContentProvider lifecycle ( Test case:
  * locator on, then off and back button -> app is expected to be closed? provider is still alive )
  */
-public class LocatorProvider extends ContentProvider {
+public class InMemoryLocatorProvider extends ContentProvider {
 
-    private static final String TAG = LocatorProvider.class.getSimpleName();
+    private static final String TAG = InMemoryLocatorProvider.class.getSimpleName();
 
     private UriMatcher uriMatcher;
 
@@ -47,15 +44,13 @@ public class LocatorProvider extends ContentProvider {
         uriMatcher.addURI(AUTHORITY, LOCATION_TABLE_NAME, 1);
         uriMatcher.addURI(AUTHORITY, LOCATION_TABLE_NAME + "/#", 2);
 
-        locations = new ArrayList<>(); //TODO initialization should be postponed to first query request
+        locations = new ArrayList<>();
         return true;
     }
 
     @Override
     public synchronized Cursor query(Uri uri, String[] projections, String selection, String[] selectionArgs, String sortOrder) {
         Log.d(TAG, "query, uri = " + uri);
-
-        //TODO check whether locations was initialized, if not -> read the file and initialize locations from file, if there is no file -> create file
 
         //TODO implement sortOrder
 
@@ -135,10 +130,6 @@ public class LocatorProvider extends ContentProvider {
 
         Log.d(TAG, "inserted location->" + location);
         Log.d(TAG, "locations.size()->" + locations.size());
-
-        //TODO if no file exists -> create file and initialize handle
-        //TODO write to the file asynchronously but via queue to ensure order
-        //TODO close file
 
         getContext().getContentResolver().notifyChange(uri, null);
 

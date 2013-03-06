@@ -32,7 +32,7 @@
                 <action android:name="ru.spb.cupchinolabs.androidlocator.LocatorService"/>
             </intent-filter>
         </service>
-        <provider android:name=".LocatorProvider"
+        <provider android:name=".InMemoryLocatorProvider"
                   android:authorities="ru.spb.cupchinolabs.androidlocator.provider"
                   android:exported="false"
                 >
