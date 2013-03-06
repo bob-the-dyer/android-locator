@@ -32,13 +32,20 @@
                 <action android:name="ru.spb.cupchinolabs.androidlocator.LocatorService"/>
             </intent-filter>
         </service>
+<!--
         <provider android:name=".InMemoryLocatorProvider"
                   android:authorities="ru.spb.cupchinolabs.androidlocator.provider"
                   android:exported="false"
                 >
-            <!--TODO take care of permission for internal components and external apps once exported="true"-->
-            <!--android:readPermission="ru.spb.cupchinolabs.androidlocator.provider.permission.READ_PROVIDER" for viewer activity-->
-            <!--android:writePermission="ru.spb.cupchinolabs.androidlocator.provider.permission.WRITE_PROVIDER" for service-->
+        </provider>
+-->
+        <!--TODO take care of permission for internal components and external apps once exported="true"-->
+        <!--android:readPermission="ru.spb.cupchinolabs.androidlocator.provider.permission.READ_PROVIDER" for viewer activity-->
+        <!--android:writePermission="ru.spb.cupchinolabs.androidlocator.provider.permission.WRITE_PROVIDER" for service-->
+        <provider android:name=".PersistentLocatorProvider"
+                  android:authorities="ru.spb.cupchinolabs.androidlocator.provider"
+                  android:exported="false"
+                >
         </provider>
     </application>
 </manifest> 

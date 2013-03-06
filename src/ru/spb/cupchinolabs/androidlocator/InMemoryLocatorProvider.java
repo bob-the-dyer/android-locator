@@ -49,7 +49,7 @@ public class InMemoryLocatorProvider extends ContentProvider {
     }
 
     @Override
-    public synchronized Cursor query(Uri uri, String[] projections, String selection, String[] selectionArgs, String sortOrder) {
+    public synchronized Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         Log.d(TAG, "query, uri = " + uri);
 
         //TODO implement sortOrder
@@ -62,17 +62,17 @@ public class InMemoryLocatorProvider extends ContentProvider {
 
         switch (uriMatcher.match(uri)) {
             case 1:
-                matrixCursor = new MatrixCursor(projections, locations.size());
+                matrixCursor = new MatrixCursor(projection, locations.size());
                 for (int i = locations.size() - 1; i >= 0; i--) {
                     Location location = locations.get(i);
-                    buildRow(projections, matrixCursor.newRow(), location, i);
+                    buildRow(projection, matrixCursor.newRow(), location, i);
                 }
                 break;
             case 2:
-                matrixCursor = new MatrixCursor(projections, 1);
+                matrixCursor = new MatrixCursor(projection, 1);
                 int id = Integer.valueOf(uri.getLastPathSegment());
                 Location location = locations.get(id);
-                buildRow(projections, matrixCursor.newRow(), location, id);
+                buildRow(projection, matrixCursor.newRow(), location, id);
                 break;
             default: {
                 //TODO handle unsupported URI
@@ -82,9 +82,9 @@ public class InMemoryLocatorProvider extends ContentProvider {
         return matrixCursor;
     }
 
-    private void buildRow(String[] projections, MatrixCursor.RowBuilder builder, Location location, int id) {
-        for (String projection : projections) {
-            switch (projection) {
+    private void buildRow(String[] projection, MatrixCursor.RowBuilder builder, Location location, int id) {
+        for (String column : projection) {
+            switch (column) {
                 case PROVIDER:
                     builder.add(location.getProvider());
                     break;
@@ -133,7 +133,7 @@ public class InMemoryLocatorProvider extends ContentProvider {
 
         getContext().getContentResolver().notifyChange(uri, null);
 
-        return Uri.parse(PROVIDER_URI + "/" + index);
+        return Uri.parse(LOCATION_TABLE_URI + "/" + index);
     }
 
     @Override
@@ -146,13 +146,4 @@ public class InMemoryLocatorProvider extends ContentProvider {
         throw new IllegalArgumentException("update is not supported");
     }
 
-    @Override
-    public void onLowMemory() {
-        super.onLowMemory();
-        saveMyself();
-    }
-
-    private void saveMyself() {
-        Log.d(TAG, "in saveMyself");
-    }
 }

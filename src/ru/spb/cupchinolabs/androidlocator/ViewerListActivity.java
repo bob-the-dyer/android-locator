@@ -10,6 +10,10 @@ import android.os.Handler;
 import android.util.Log;
 import android.widget.CursorAdapter;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
+
+import java.text.DateFormat;
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -59,15 +63,24 @@ public class ViewerListActivity extends ListActivity {
             Log.d(TAG, "cursor returns an empty result");
             //TODO show empty message
         }
-        cursorAdapter = new SimpleCursorAdapter(this, R.layout.viewer_list_entry, cursor, FROM_COLUMNS, TO_IDS);
+        cursorAdapter = new SimpleCursorAdapter(this, R.layout.viewer_list_entry, cursor, FROM_COLUMNS, TO_IDS) {
+            @Override
+            public void setViewText(TextView v, String text) {
+                if (v.getId() == R.id.time) {
+                    super.setViewText(v, DateFormat.getDateTimeInstance().format(new Date(Long.parseLong(text))));
+                } else {
+                    super.setViewText(v, text);
+                }
+            }
+        };
         setListAdapter(cursorAdapter);
         contentObserver = new ProviderContentObserver();
         getContentResolver().registerContentObserver(PARSED_LOCATION_URI, true, contentObserver);
     }
 
     private Cursor createNewCursor() {
-        return getContentResolver().query(
-                PARSED_LOCATION_URI, PROJECTION, null, new String[]{""}, LocatorProviderContract.Location._ID + " DESC");
+        return getContentResolver().query( //TODO query not all rows
+                PARSED_LOCATION_URI, PROJECTION, null, new String[]{}, LocatorProviderContract.Location._ID + " DESC");
     }
 
     @Override
@@ -103,11 +116,11 @@ public class ViewerListActivity extends ListActivity {
                 @Override
                 protected Object doInBackground(Object... objects) {
                     final Cursor newCursor = createNewCursor();
-                    if (handler != null){
+                    if (handler != null) {
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                if (cursorAdapter != null){
+                                if (cursorAdapter != null) {
                                     cursorAdapter.changeCursor(newCursor);
                                     cursorAdapter.notifyDataSetChanged();
                                     //TODO think of adding inserted entries to current underlying model instead of new cursor
