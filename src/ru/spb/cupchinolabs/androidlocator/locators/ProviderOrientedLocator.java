@@ -19,7 +19,7 @@ import static ru.spb.cupchinolabs.androidlocator.Utils.print;
  */
 public class ProviderOrientedLocator extends AbstractChainedLocator {
 
-    private static final String TAG = ProviderOrientedLocator.class.getSimpleName();
+    private final String TAG;
 
     private final String providerName;
     private final LocationManager locationManager;
@@ -31,6 +31,7 @@ public class ProviderOrientedLocator extends AbstractChainedLocator {
         this.locationManager = locationManager;
         this.handler = handler;
         this.timeoutInSec = timeoutInSec;
+        this.TAG = ProviderOrientedLocator.class.getSimpleName() + "-" + providerName;
     }
 
     @Override
@@ -77,7 +78,7 @@ public class ProviderOrientedLocator extends AbstractChainedLocator {
         public LocationUpdatesListener(AtomicReference<Location> locationHolder, String providerName, Thread parentThread) {
             this.locationHolder = locationHolder;
             this.parentThread = parentThread;
-            TAG = ProviderOrientedLocator.TAG + "-listener-" + providerName;
+            TAG = LocationUpdatesListener.class.getSimpleName() + "-" + providerName;
         }
 
         public void onLocationChanged(Location location) {

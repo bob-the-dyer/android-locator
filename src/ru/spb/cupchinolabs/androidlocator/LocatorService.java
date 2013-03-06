@@ -36,8 +36,10 @@ public class LocatorService extends Service {
 
     private static final String TAG = LocatorService.class.getSimpleName();
 
-    private static final int REPEAT_TASK_INTERVAL_IN_SEC = 5;
-    private static final int WAIT_FOR_PROVIDER_TIMEOUT_IN_SEC = 2;
+    private static final int GPS_PROVIDER_TIMEOUT_IN_SEC = 60;
+    private static final int NETWORK_PROVIDER_TIMEOUT_IN_SEC = 5;
+    private static final int TASK_REPEAT_INTERVAL_IN_SEC =
+            Math.max(GPS_PROVIDER_TIMEOUT_IN_SEC, NETWORK_PROVIDER_TIMEOUT_IN_SEC) + 30;
 
     private Handler handler;
     private Timer timer;
@@ -58,7 +60,7 @@ public class LocatorService extends Service {
 
         Locator locator = createChainOfResponsibilities();
 
-        timer.schedule(new LMSTimerTask(locator, getContentResolver()), 1000L, REPEAT_TASK_INTERVAL_IN_SEC * 1000L);
+        timer.schedule(new LMSTimerTask(locator, getContentResolver()), 1000L, TASK_REPEAT_INTERVAL_IN_SEC * 1000L);
     }
 
     private Locator createChainOfResponsibilities() {
@@ -66,8 +68,8 @@ public class LocatorService extends Service {
                 (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         Locator locator =
-                new ProviderOrientedLocator(GPS_PROVIDER, manager, handler, WAIT_FOR_PROVIDER_TIMEOUT_IN_SEC)
-                        .setNext(new ProviderOrientedLocator(NETWORK_PROVIDER, manager, handler, WAIT_FOR_PROVIDER_TIMEOUT_IN_SEC)
+                new ProviderOrientedLocator(GPS_PROVIDER, manager, handler, GPS_PROVIDER_TIMEOUT_IN_SEC)
+                        .setNext(new ProviderOrientedLocator(NETWORK_PROVIDER, manager, handler, NETWORK_PROVIDER_TIMEOUT_IN_SEC)
                                 .setNext(new DeadEndLocator()));
         return locator;
     }
