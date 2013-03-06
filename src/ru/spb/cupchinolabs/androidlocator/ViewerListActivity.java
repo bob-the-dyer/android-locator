@@ -88,6 +88,9 @@ public class ViewerListActivity extends ListActivity {
     }
 
     private class ProviderContentObserver extends ContentObserver {
+
+        private final String TAG = ViewerListActivity.TAG + "-ContentObserver";
+
         public ProviderContentObserver() {
             super(ViewerListActivity.this.handler);
         }
@@ -95,19 +98,27 @@ public class ViewerListActivity extends ListActivity {
         @Override
         public void onChange(boolean selfChange) {
             super.onChange(selfChange);
-            Log.d(TAG + "-ContentObserver", "onChange");
+            Log.d(TAG, "onChange");
             new AsyncTask() {
                 @Override
                 protected Object doInBackground(Object... objects) {
                     final Cursor newCursor = createNewCursor();
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            cursorAdapter.changeCursor(newCursor);
-                            cursorAdapter.notifyDataSetChanged();
-                            //TODO think of adding inserted entries to current underlying model instead of new cursor
-                        }
-                    });
+                    if (handler != null){
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (cursorAdapter != null){
+                                    cursorAdapter.changeCursor(newCursor);
+                                    cursorAdapter.notifyDataSetChanged();
+                                    //TODO think of adding inserted entries to current underlying model instead of new cursor
+                                } else {
+                                    Log.d(TAG, "cursorAdapter is null, skipping");
+                                }
+                            }
+                        });
+                    } else {
+                        Log.d(TAG, "handler is null, skipping");
+                    }
                     return null;
                 }
             }.execute();
