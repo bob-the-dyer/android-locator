@@ -5,8 +5,12 @@
           android:versionName="1.0">
     <uses-sdk android:minSdkVersion="10"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <permission android:name="ru.spb.cupchinolabs.androidlocator.provider.permission.READ_PROVIDER"/>
+    <permission android:name="ru.spb.cupchinolabs.androidlocator.provider.permission.WRITE_PROVIDER"/>
     <!--<uses-permission android:name="android.permission.INTERNET"/>-->
     <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>-->
+    <uses-permission android:name="ru.spb.cupchinolabs.androidlocator.provider.permission.READ_PROVIDER"/>
+    <uses-permission android:name="ru.spb.cupchinolabs.androidlocator.provider.permission.WRITE_PROVIDER"/>
     <application android:label="@string/app_name">
         <activity android:name=".ControlActivity"
                   android:label="@string/app_name"
@@ -39,12 +43,12 @@
                 >
         </provider>
 -->
-        <!--TODO take care of permission for internal components and external apps once exported="true"-->
-        <!--android:readPermission="ru.spb.cupchinolabs.androidlocator.provider.permission.READ_PROVIDER" for viewer activity-->
-        <!--android:writePermission="ru.spb.cupchinolabs.androidlocator.provider.permission.WRITE_PROVIDER" for service-->
         <provider android:name=".PersistentLocatorProvider"
                   android:authorities="ru.spb.cupchinolabs.androidlocator.provider"
-                  android:exported="false"
+                  android:exported="true"
+                  android:multiprocess="true"
+                  android:readPermission="ru.spb.cupchinolabs.androidlocator.provider.permission.READ_PROVIDER"
+                  android:writePermission="ru.spb.cupchinolabs.androidlocator.provider.permission.WRITE_PROVIDER"
                 >
         </provider>
     </application>
