@@ -24,6 +24,7 @@ import java.util.Date;
 public class ViewerListActivity extends ListActivity {
 
     private static final String TAG = ViewerListActivity.class.getSimpleName();
+
     private static final Uri PARSED_LOCATION_URI = Uri.parse(LocatorProviderContract.LOCATION_TABLE_URI);
 
     private final static String[] PROJECTION = {
@@ -63,16 +64,7 @@ public class ViewerListActivity extends ListActivity {
             Log.d(TAG, "cursor returns an empty result");
             //TODO show empty message
         }
-        cursorAdapter = new SimpleCursorAdapter(this, R.layout.viewer_list_entry, cursor, FROM_COLUMNS, TO_IDS) {
-            @Override
-            public void setViewText(TextView v, String text) {
-                if (v.getId() == R.id.time) {
-                    super.setViewText(v, DateFormat.getDateTimeInstance().format(new Date(Long.parseLong(text))));
-                } else {
-                    super.setViewText(v, text);
-                }
-            }
-        };
+        cursorAdapter = new ViewerListAdapter(cursor);
         setListAdapter(cursorAdapter);
         contentObserver = new ProviderContentObserver();
         getContentResolver().registerContentObserver(PARSED_LOCATION_URI, true, contentObserver);
@@ -135,6 +127,22 @@ public class ViewerListActivity extends ListActivity {
                     return null;
                 }
             }.execute();
+        }
+    }
+
+    private class ViewerListAdapter extends SimpleCursorAdapter {
+
+        public ViewerListAdapter(Cursor cursor) {
+            super(ViewerListActivity.this, R.layout.viewer_list_entry, cursor, ViewerListActivity.FROM_COLUMNS, ViewerListActivity.TO_IDS);
+        }
+
+        @Override
+        public void setViewText(TextView view, String text) {
+            if (view.getId() == R.id.time) {
+                super.setViewText(view, DateFormat.getDateTimeInstance().format(new Date(Long.parseLong(text))));
+            } else {
+                super.setViewText(view, text);
+            }
         }
     }
 }

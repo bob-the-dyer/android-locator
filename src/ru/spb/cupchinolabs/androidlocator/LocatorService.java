@@ -16,6 +16,7 @@ import android.util.Log;
 import ru.spb.cupchinolabs.androidlocator.locators.DeadEndLocator;
 import ru.spb.cupchinolabs.androidlocator.locators.Locator;
 import ru.spb.cupchinolabs.androidlocator.locators.ProviderOrientedLocator;
+import ru.spb.cupchinolabs.androidlocator.locators.YandexLocator;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -38,8 +39,15 @@ public class LocatorService extends Service {
 
     private static final int GPS_PROVIDER_TIMEOUT_IN_SEC = 60;
     private static final int NETWORK_PROVIDER_TIMEOUT_IN_SEC = 5;
+    private static final int YANDEX_PROVIDER_TIMEOUT_IN_SEC = 10;
+
+    private static final int TASK_PAD_INTERVAL_IN_SEC = 30;
+
     private static final int TASK_REPEAT_INTERVAL_IN_SEC =
-            Math.max(GPS_PROVIDER_TIMEOUT_IN_SEC, NETWORK_PROVIDER_TIMEOUT_IN_SEC) + 30;
+            Math.max(
+                    Math.max(GPS_PROVIDER_TIMEOUT_IN_SEC, NETWORK_PROVIDER_TIMEOUT_IN_SEC),
+                    YANDEX_PROVIDER_TIMEOUT_IN_SEC
+            ) + TASK_PAD_INTERVAL_IN_SEC;
 
     private Handler handler;
     private Timer timer;
@@ -60,7 +68,7 @@ public class LocatorService extends Service {
 
         Locator locator = createChainOfResponsibilities();
 
-        timer.schedule(new LMSTimerTask(locator, getContentResolver()), 1000L, TASK_REPEAT_INTERVAL_IN_SEC * 1000L);
+        timer.schedule(new LMSTimerTask(locator, getContentResolver()), 1000, TASK_REPEAT_INTERVAL_IN_SEC * 1000);
     }
 
     private Locator createChainOfResponsibilities() {
@@ -69,8 +77,9 @@ public class LocatorService extends Service {
 
         Locator locator =
                 new ProviderOrientedLocator(GPS_PROVIDER, manager, handler, GPS_PROVIDER_TIMEOUT_IN_SEC)
-                        .setNext(new ProviderOrientedLocator(NETWORK_PROVIDER, manager, handler, NETWORK_PROVIDER_TIMEOUT_IN_SEC)
-                                .setNext(new DeadEndLocator()));
+                        .setNext(new YandexLocator(YANDEX_PROVIDER_TIMEOUT_IN_SEC)
+                                .setNext(new ProviderOrientedLocator(NETWORK_PROVIDER, manager, handler, NETWORK_PROVIDER_TIMEOUT_IN_SEC)
+                                        .setNext(new DeadEndLocator())));
         return locator;
     }
 
