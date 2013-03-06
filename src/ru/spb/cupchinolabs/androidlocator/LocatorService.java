@@ -44,13 +44,13 @@ public class LocatorService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        notifyOnStartCommand();
-        return START_STICKY;//TODO think about it  again
+        startForeground();
+        return START_STICKY;//TODO think about it again
     }
 
     @Override
     public void onCreate() {
-        print("Locator service - creating ...", this, TAG);
+        print("Locator service - creating ...", null, TAG);
 
         handler = new Handler();
 
@@ -74,7 +74,7 @@ public class LocatorService extends Service {
 
     @Override
     public void onDestroy() {
-        notifyOnDestroy();
+        stopForeground();
         timer.cancel();
         timer = null;
         handler = null;
@@ -85,22 +85,24 @@ public class LocatorService extends Service {
         return null;
     }
 
-    private void notifyOnDestroy() {
-        //TODO replace Toast with notification
-        print("Locator service - destroying ...", this, TAG);
+    private void stopForeground() {
         stopForeground(true);
+        print(getText(R.string.locator_is_off_notification_content_text).toString(), this, TAG);
     }
 
-    private void notifyOnStartCommand() {
-        //TODO rework
+    private void startForeground() {
+        //TODO rework with NotificationManager
         Notification notification = new Notification(
                 R.drawable.triangle, getText(R.string.locator_notification_ticker_text), System.currentTimeMillis());
+
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, ControlActivity.class), 0);
+
         notification.setLatestEventInfo(this, getText(R.string.locator_notification_content_title),
-                getText(R.string.locator_notification_content_text), pendingIntent);
+                getText(R.string.locator_is_on_notification_content_text), pendingIntent);
+
+        print(getText(R.string.locator_is_on_notification_content_text).toString(), this, TAG);
 
         startForeground(R.string.locator_notification_content_title, notification);
-        print("Locator service - starting ...", this, TAG);
     }
 
     private static class LMSTimerTask extends TimerTask {
@@ -122,6 +124,7 @@ public class LocatorService extends Service {
 
             if (location != null) {
                 ContentValues contentValues = new ContentValues();
+
                 contentValues.put(TIME, location.getTime());
                 contentValues.put(PROVIDER, location.getProvider());
                 contentValues.put(LATITUDE, location.getLatitude());
@@ -131,9 +134,9 @@ public class LocatorService extends Service {
             } else {
                 //TODO nothing
             }
-
             //TODO notify of new provider was enabled
             //TODO notify of null location just once - first time
+            //TODO propose to open settings in case of no providers available
         }
     }
 }

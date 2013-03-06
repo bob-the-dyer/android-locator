@@ -24,7 +24,7 @@ import static ru.spb.cupchinolabs.androidlocator.LocatorProviderContract.Locatio
  * Time: 23:30
  * <p/>
  * <p/>
- * TODO rework to store locations in SQLite instead of in memory or in file
+ * TODO rework to store locations in SQLite instead of current in memory solution or file storage
  * <p/>
  * TODO think of a better solution for provider's thread safety instead of sync methods
  * <p/>
@@ -70,14 +70,14 @@ public class LocatorProvider extends ContentProvider {
                 matrixCursor = new MatrixCursor(projections, locations.size());
                 for (int i = locations.size() - 1; i >= 0; i--) {
                     Location location = locations.get(i);
-                    buildRow(projections, matrixCursor, location, i);
+                    buildRow(projections, matrixCursor.newRow(), location, i);
                 }
                 break;
             case 2:
                 matrixCursor = new MatrixCursor(projections, 1);
                 int id = Integer.valueOf(uri.getLastPathSegment());
                 Location location = locations.get(id);
-                buildRow(projections, matrixCursor, location, id);
+                buildRow(projections, matrixCursor.newRow(), location, id);
                 break;
             default: {
                 //TODO handle unsupported URI
@@ -87,8 +87,7 @@ public class LocatorProvider extends ContentProvider {
         return matrixCursor;
     }
 
-    private void buildRow(String[] projections, MatrixCursor matrixCursor, Location location, int id) {
-        MatrixCursor.RowBuilder builder = matrixCursor.newRow();
+    private void buildRow(String[] projections, MatrixCursor.RowBuilder builder, Location location, int id) {
         for (String projection : projections) {
             switch (projection) {
                 case PROVIDER:

@@ -24,7 +24,7 @@
                   android:label="@string/app_name">
         </activity>
         <service android:name=".LocatorService"
-                 android:label="locatorService"
+                 android:label="LocatorService"
                  android:exported="false"
                  android:process=":LocatorService"
                 >
@@ -37,8 +37,8 @@
                   android:exported="false"
                 >
             <!--TODO take care of permission for internal components and external apps once exported="true"-->
-            <!--android:readPermission="ru.spb.cupchinolabs.androidlocator.provider.permission.READ_PROVIDER"-->
-            <!--android:writePermission="ru.spb.cupchinolabs.androidlocator.provider.permission.WRITE_PROVIDER"-->
+            <!--android:readPermission="ru.spb.cupchinolabs.androidlocator.provider.permission.READ_PROVIDER" for viewer activity-->
+            <!--android:writePermission="ru.spb.cupchinolabs.androidlocator.provider.permission.WRITE_PROVIDER" for service-->
         </provider>
     </application>
 </manifest> 
