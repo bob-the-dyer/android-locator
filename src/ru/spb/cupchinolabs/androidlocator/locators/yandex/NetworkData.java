@@ -20,24 +20,27 @@ public class NetworkData {
         return ip;
     }
 
-    public void setIp(Ip ip) {
+    public NetworkData setIp(Ip ip) {
         this.ip = ip;
+        return this;
     }
 
     public List<WifiNetwork> getWifiNetworkList() {
         return wifiNetworkList;
     }
 
-    public void setWifiNetworkList(List<WifiNetwork> wifiNetworkList) {
+    public NetworkData setWifiNetworkList(List<WifiNetwork> wifiNetworkList) {
         this.wifiNetworkList = wifiNetworkList;
+        return this;
     }
 
     public List<GsmCell> getGsmCellList() {
         return gsmCellList;
     }
 
-    public void setGsmCellList(List<GsmCell> gsmCellList) {
+    public NetworkData setGsmCellList(List<GsmCell> gsmCellList) {
         this.gsmCellList = gsmCellList;
+        return this;
     }
 
     public boolean isSufficient() {

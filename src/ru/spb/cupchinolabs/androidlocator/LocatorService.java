@@ -78,21 +78,20 @@ public class LocatorService extends Service {
 
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
         if (networkInfo != null && networkInfo.isConnected()) {
             //TODO
         } else {
             //TODO
         }
 
-        LocationManager manager =
+        LocationManager locationManager =
                 (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-        NetworkDataRetriever retriever = new NetworkDataRetriever();
-
         Locator locator =
-                new ProviderOrientedLocator(GPS_PROVIDER, manager, handler, GPS_PROVIDER_TIMEOUT_IN_SEC)
-                        .setNext(new YandexLocator(retriever, YANDEX_PROVIDER_TIMEOUT_IN_SEC)
-                                .setNext(new ProviderOrientedLocator(NETWORK_PROVIDER, manager, handler, NETWORK_PROVIDER_TIMEOUT_IN_SEC)
+                new ProviderOrientedLocator(GPS_PROVIDER, locationManager, handler, GPS_PROVIDER_TIMEOUT_IN_SEC)
+                        .setNext(new YandexLocator(new NetworkDataRetriever(YANDEX_PROVIDER_TIMEOUT_IN_SEC, this), YANDEX_PROVIDER_TIMEOUT_IN_SEC)
+                                .setNext(new ProviderOrientedLocator(NETWORK_PROVIDER, locationManager, handler, NETWORK_PROVIDER_TIMEOUT_IN_SEC)
                                         .setNext(new DeadEndLocator())));
         return locator;
     }

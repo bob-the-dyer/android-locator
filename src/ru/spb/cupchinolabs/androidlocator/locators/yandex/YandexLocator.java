@@ -32,7 +32,7 @@ public class YandexLocator extends AbstractChainedLocator {
     @Override
     protected Location locateImpl() {
 
-        if (retriever == null){
+        if (retriever == null) {
             Log.d(TAG, "retriever is null, skipping");
             return null;
         }
@@ -55,7 +55,7 @@ public class YandexLocator extends AbstractChainedLocator {
 
             conn = buildHttpUrlConnection(conn, request);
 
-            doPost(conn, request);
+            postRequest(conn, request);
 
             int responseCode = conn.getResponseCode();
             Log.d(TAG, "responseCode -> " + responseCode);
@@ -68,7 +68,7 @@ public class YandexLocator extends AbstractChainedLocator {
                 is = conn.getInputStream();
             }
 
-            String jsonResponseAsString = readResponseAsString(is);
+            String jsonResponseAsString = readResponse(is);
 
             if (200 != responseCode) {
                 Log.d(TAG, "error occurred, returning null");
@@ -80,7 +80,7 @@ public class YandexLocator extends AbstractChainedLocator {
 
             if (100000 == position.getDouble("precision")) {
                 Log.d(TAG, "precision is 100000, returning null");
-// TODO uncomment return null;
+                return null;
             }
 
             return createLocationFromJSON(position);
@@ -97,7 +97,7 @@ public class YandexLocator extends AbstractChainedLocator {
         }
     }
 
-    private void doPost(HttpURLConnection conn, String request) throws IOException {
+    private void postRequest(HttpURLConnection conn, String request) throws IOException {
         DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
         wr.writeBytes(request);
         wr.flush();
@@ -125,7 +125,7 @@ public class YandexLocator extends AbstractChainedLocator {
         return jsonBuilder.build();
     }
 
-    private String readResponseAsString(InputStream is) throws IOException {
+    private String readResponse(InputStream is) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         StringBuilder sb = new StringBuilder();
         String line;

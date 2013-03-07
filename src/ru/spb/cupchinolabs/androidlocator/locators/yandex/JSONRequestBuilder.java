@@ -11,6 +11,8 @@ import java.util.List;
  * User: VladimirK
  * Date: 07.03.13
  * Time: 4:59
+ * <p/>
+ * TODO Rework Strings to Enums
  */
 public class JSONRequestBuilder {
 
