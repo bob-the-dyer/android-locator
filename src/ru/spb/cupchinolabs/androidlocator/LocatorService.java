@@ -9,8 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationManager;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.IBinder;
@@ -40,16 +38,16 @@ public class LocatorService extends Service {
 
     private static final String TAG = LocatorService.class.getSimpleName();
 
-    private static final int GPS_PROVIDER_TIMEOUT_IN_SEC = 60;
-    private static final int NETWORK_PROVIDER_TIMEOUT_IN_SEC = 5;
-    private static final int YANDEX_PROVIDER_TIMEOUT_IN_SEC = 20;
+    private static final int GPS_TIMEOUT_IN_SEC = 60;
+    private static final int NETWORK_TIMEOUT_IN_SEC = 5;
+    private static final int YANDEX_TIMEOUT_IN_SEC = 20;
 
     private static final int TASK_PAD_INTERVAL_IN_SEC = 30;
 
     private static final int TASK_REPEAT_INTERVAL_IN_SEC =
             Math.max(
-                    Math.max(GPS_PROVIDER_TIMEOUT_IN_SEC, NETWORK_PROVIDER_TIMEOUT_IN_SEC),
-                    YANDEX_PROVIDER_TIMEOUT_IN_SEC
+                    Math.max(GPS_TIMEOUT_IN_SEC, NETWORK_TIMEOUT_IN_SEC),
+                    YANDEX_TIMEOUT_IN_SEC
             ) + TASK_PAD_INTERVAL_IN_SEC;
 
     private Handler handler;
@@ -75,14 +73,13 @@ public class LocatorService extends Service {
     }
 
     private Locator createLocatorChainOfResponsibilities() {
-        LocationManager locationManager =
+        LocationManager manager =
                 (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Locator locator =
-                new ProviderOrientedLocator(GPS_PROVIDER, locationManager, handler, GPS_PROVIDER_TIMEOUT_IN_SEC)
-                        .setNext(new YandexLocator(new NetworkDataRetriever(YANDEX_PROVIDER_TIMEOUT_IN_SEC, this), YANDEX_PROVIDER_TIMEOUT_IN_SEC)
-                                .setNext(new ProviderOrientedLocator(NETWORK_PROVIDER, locationManager, handler, NETWORK_PROVIDER_TIMEOUT_IN_SEC)
+        return
+                new ProviderOrientedLocator(GPS_PROVIDER, manager, handler, GPS_TIMEOUT_IN_SEC)
+                        .setNext(new YandexLocator(new NetworkDataRetriever(YANDEX_TIMEOUT_IN_SEC, this), YANDEX_TIMEOUT_IN_SEC)
+                                .setNext(new ProviderOrientedLocator(NETWORK_PROVIDER, manager, handler, NETWORK_TIMEOUT_IN_SEC)
                                         .setNext(new DeadEndLocator())));
-        return locator;
     }
 
     @Override
