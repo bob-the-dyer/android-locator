@@ -24,13 +24,11 @@ public class NetworkDataRetriever extends PhoneStateListener {
     private static final String TAG = NetworkDataRetriever.class.getSimpleName();
 
     private final int timeoutInSec;
-    private final Context context;
     private final WifiManager wifiManager;
     private final TelephonyManager telephonyManager;
 
     public NetworkDataRetriever(int timeoutInSec, Context context) {
         this.timeoutInSec = timeoutInSec;
-        this.context = context;
         this.wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
         this.telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
     }
