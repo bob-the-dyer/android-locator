@@ -23,12 +23,12 @@ public class NetworkDataRetriever extends PhoneStateListener {
 
     private static final String TAG = NetworkDataRetriever.class.getSimpleName();
 
-    private final int timeoutInSec;
+    private final int timeoutInMillis;
     private final WifiManager wifiManager;
     private final TelephonyManager telephonyManager;
 
     public NetworkDataRetriever(int timeoutInSec, Context context) {
-        this.timeoutInSec = timeoutInSec;
+        this.timeoutInMillis = timeoutInSec * 1000 / 2;
         this.wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
         this.telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
     }
@@ -172,7 +172,7 @@ public class NetworkDataRetriever extends PhoneStateListener {
     private void sleep() {
         try {
             Log.d(TAG, "start sleeping");
-            Thread.sleep(timeoutInSec * 1000 / 2);
+            Thread.sleep(timeoutInMillis);
             Log.d(TAG, "stop sleeping");
         } catch (InterruptedException e) {
             Log.d(TAG, "interrupted");

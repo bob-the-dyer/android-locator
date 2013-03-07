@@ -42,7 +42,7 @@ public class LocatorService extends Service {
 
     private static final int GPS_PROVIDER_TIMEOUT_IN_SEC = 60;
     private static final int NETWORK_PROVIDER_TIMEOUT_IN_SEC = 5;
-    private static final int YANDEX_PROVIDER_TIMEOUT_IN_SEC = 10;
+    private static final int YANDEX_PROVIDER_TIMEOUT_IN_SEC = 20;
 
     private static final int TASK_PAD_INTERVAL_IN_SEC = 30;
 

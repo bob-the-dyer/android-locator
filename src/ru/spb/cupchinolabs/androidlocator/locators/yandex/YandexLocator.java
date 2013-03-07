@@ -26,7 +26,7 @@ public class YandexLocator extends AbstractChainedLocator {
 
     public YandexLocator(NetworkDataRetriever retriever, int timeoutInSec) {
         this.retriever = retriever;
-        this.timeoutInMillis = timeoutInSec * 1000;
+        this.timeoutInMillis = timeoutInSec * 1000 / 2;
     }
 
     @Override
