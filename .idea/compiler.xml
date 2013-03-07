@@ -3,11 +3,8 @@
   <component name="CompilerConfiguration">
     <option name="DEFAULT_COMPILER" value="Javac" />
     <excludeFromCompile>
-      <directory url="file://$PROJECT_DIR$/gen" includeSubdirectories="true" />
       <directory url="file://$USER_HOME$/Downloads/android_sample/LbsAPI/gen" includeSubdirectories="true" />
-      <file url="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/RemoteServiceBinding.java" />
-      <file url="file://$USER_HOME$/Downloads/android_sample/LbsAPI/src/ru/yandex/yandexlbs/WifiAndCellCollector.java" />
-      <file url="file://$USER_HOME$/Downloads/android_sample/LbsAPI/src/ru/yandex/yandexlbs/LbsApiActivity.java" />
+      <directory url="file://$PROJECT_DIR$/gen" includeSubdirectories="true" />
     </excludeFromCompile>
     <resourceExtensions />
     <wildcardResourcePatterns>

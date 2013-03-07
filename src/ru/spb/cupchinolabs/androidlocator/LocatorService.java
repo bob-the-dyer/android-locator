@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.IBinder;
@@ -16,7 +18,7 @@ import android.util.Log;
 import ru.spb.cupchinolabs.androidlocator.locators.DeadEndLocator;
 import ru.spb.cupchinolabs.androidlocator.locators.Locator;
 import ru.spb.cupchinolabs.androidlocator.locators.ProviderOrientedLocator;
-import ru.spb.cupchinolabs.androidlocator.locators.YandexLocator;
+import ru.spb.cupchinolabs.androidlocator.locators.yandex.YandexLocator;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -72,6 +74,15 @@ public class LocatorService extends Service {
     }
 
     private Locator createChainOfResponsibilities() {
+
+        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+           //TODO
+        } else {
+           //TODO
+        }
+
         LocationManager manager =
                 (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
