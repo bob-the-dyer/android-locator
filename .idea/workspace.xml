@@ -17,18 +17,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9aaf2011-bafd-4ec6-93e6-9e07319556d9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/VladimirK.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/yandex/GsmCell.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/yandex/Ip.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/yandex/WifiNetwork.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/yandex/YandexLocator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/yandex/YandexLocatorRequestBuilder.java" />
-      <change type="DELETED" beforePath="C:\Users\VladimirK\IdeaProjects\android-locator\src\ru\spb\cupchinolabs\androidlocator\locators\YandexLocator.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/ru/spb/cupchinolabs/androidlocator/BuildConfig.java" afterPath="$PROJECT_DIR$/gen/ru/spb/cupchinolabs/androidlocator/BuildConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocatorService.java" afterPath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocatorService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/yandex/YandexLocator.java" afterPath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/yandex/YandexLocator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/yandex/YandexLocatorRequestBuilder.java" afterPath="$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/yandex/YandexLocatorRequestBuilder.java" />
     </list>
     <ignored path="android-locator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,21 +38,6 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <line_breakpoints>
-      <breakpoint url="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/yandex/YandexLocator.java" line="71" class="ru.spb.cupchinolabs.androidlocator.locators.YandexLocator" package="ru.spb.cupchinolabs.androidlocator.locators">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="&#13;&#13;JAVA" />
-        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
-      </breakpoint>
-    </line_breakpoints>
     <breakpoint_any>
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -108,8 +85,8 @@
       <property name="field_breakpoints_groupByClasses" value="true" />
       <property name="method_breakpoints_groupByClasses" value="true" />
       <property name="exception_breakpoints_viewId" value="TABLE" />
-      <property name="exception_breakpoints_groupByClasses" value="true" />
       <property name="field_breakpoints_viewId" value="TABLE" />
+      <property name="exception_breakpoints_groupByClasses" value="true" />
       <property name="method_breakpoints_groupByMethods" value="false" />
     </ui_properties>
   </component>
@@ -148,7 +125,7 @@
       <file leaf-file-name="YandexLocator.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/yandex/YandexLocator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="8" selection-start="1750" selection-end="1750" vertical-scroll-proportion="1.2625216">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -157,7 +134,7 @@
       <file leaf-file-name="LocatorService.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocatorService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="82" column="0" selection-start="2868" selection-end="2868" vertical-scroll-proportion="0.0">
+            <state line="82" column="0" selection-start="2885" selection-end="2885" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -166,7 +143,7 @@
       <file leaf-file-name="YandexLocatorRequestBuilder.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/yandex/YandexLocatorRequestBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="0" selection-start="539" selection-end="539" vertical-scroll-proportion="0.0">
+            <state line="14" column="20" selection-start="282" selection-end="282" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -175,7 +152,7 @@
       <file leaf-file-name="Ip.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/yandex/Ip.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="4" selection-start="193" selection-end="193" vertical-scroll-proportion="0.0">
+            <state line="10" column="11" selection-start="181" selection-end="181" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -273,6 +250,16 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android-locator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -397,16 +384,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android-locator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -429,9 +406,9 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -818,7 +795,11 @@
       <created>1362588624357</created>
       <updated>1362588624357</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="adding model, locator and builder  for yandex locator">
+      <created>1362624973785</created>
+      <updated>1362624973785</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -834,11 +815,11 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.48844886" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1923077" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3878205" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3878205" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.249694" sideWeight="0.6721854" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2651515" sideWeight="0.61217946" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26287878" sideWeight="0.61217946" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3974359" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.70198673" order="3" side_tool="false" content_ui="tabs" />
@@ -887,7 +868,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="creating yandex locator stub" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding model, locator and builder  for yandex locator" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -900,7 +881,6 @@
     <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value=" - launchMode=&quot;singleTask&quot;, allowTaskReparenting=&quot;true&quot;&#10; - reworking service from bound to start" />
     <MESSAGE value="fix state lost on back button with saving to preferences&#10;" />
     <MESSAGE value="change theme to black&#10;" />
     <MESSAGE value=" - creating a chain of location providers and the main types of providers&#10; - utils class &#10; - adding permission&#10;" />
@@ -925,6 +905,7 @@
     <MESSAGE value=" - adding persistent provider that works with SQLite&#10; - several adjustments" />
     <MESSAGE value="permissions for provider and application components are defined" />
     <MESSAGE value="creating yandex locator stub" />
+    <MESSAGE value="adding model, locator and builder  for yandex locator" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -981,9 +962,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/LocatorService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="0" selection-start="2868" selection-end="2868" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="82" column="0" selection-start="2885" selection-end="2885" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/yandex/WifiNetwork.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="10" selection-start="233" selection-end="233" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/yandex/GsmCell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="10" selection-start="295" selection-end="295" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/Downloads/android_sample/LbsAPI/src/ru/yandex/yandexlbs/Base64.java">
@@ -991,37 +980,23 @@
         <state line="9" column="21" selection-start="111" selection-end="111" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/yandex/GsmCell.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="10" selection-start="295" selection-end="295" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/yandex/Ip.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="4" selection-start="193" selection-end="193" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/yandex/WifiNetwork.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="10" selection-start="233" selection-end="233" vertical-scroll-proportion="0.0">
+        <state line="10" column="11" selection-start="181" selection-end="181" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/yandex/YandexLocatorRequestBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="539" selection-end="539" vertical-scroll-proportion="0.0">
+        <state line="14" column="20" selection-start="282" selection-end="282" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/spb/cupchinolabs/androidlocator/locators/yandex/YandexLocator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="8" selection-start="1750" selection-end="1750" vertical-scroll-proportion="1.2625216">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>

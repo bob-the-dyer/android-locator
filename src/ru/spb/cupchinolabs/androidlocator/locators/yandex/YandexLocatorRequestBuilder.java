@@ -1,5 +1,9 @@
 package ru.spb.cupchinolabs.androidlocator.locators.yandex;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.List;
 
 /**
@@ -10,67 +14,56 @@ import java.util.List;
  */
 public class YandexLocatorRequestBuilder {
 
-    public static final String API_KEY = "AHfzMFEBAAAAt4_RTQQAk57mvJS6SMGh4nwNNOB5HVMrqkEAAAAAAAAAAADMKekl28qO50dzsm-9AF83cDEjvg==";
-
-    public static final String COMMON = "   \"common\": {\n" +
-            "      \"version\": \"1.0\",\n" +
-            "      \"api_key\": \"" + API_KEY + "\"\n" +
-            "   }";
+    public static final String API_KEY =
+            "AHfzMFEBAAAAt4_RTQQAk57mvJS6SMGh4nwNNOB5HVMrqkEAAAAAAAAAAADMKekl28qO50dzsm-9AF83cDEjvg==";
 
     private List<GsmCell> gsmCells;
     private List<WifiNetwork> wifiNetworks;
     private Ip ip;
 
-    public String build() {
-        StringBuffer sb = new StringBuffer();
-        sb.append("json={\n");
-        sb.append(COMMON);
+    public JSONObject buildJSON() throws JSONException {
+        JSONObject jsonResult = new JSONObject();
+
+        JSONObject common = new JSONObject();
+        common.put("version", "1.0");
+        common.put("api_key", API_KEY);
+
+        jsonResult.put("common", common);
 
         if (gsmCells != null && gsmCells.size() >= 1) {
-            sb.append(",\n");
-            sb.append("   \"gsm_cells\": [\n");
-            for (int i = 0, size = gsmCells.size(); i < size; i++) {
-                GsmCell gsmCell = gsmCells.get(i);
-                if (i != 0) {
-                    sb.append(",\n");
-                }
-                sb.append("       {\n");
-                sb.append("          \"countrycode\": " + gsmCell.countrycode + ",\n" +
-                        "          \"operatorid\": " + gsmCell.operatorid + ",\n" +
-                        "          \"cellid\": " + gsmCell.cellid + ",\n" +
-                        "          \"lac\": " + gsmCell.lac + ",\n" +
-                        "          \"signal_strength\": " + gsmCell.signal_strength + ",\n" +
-                        "          \"age\": " + gsmCell.age + "\n"
-                );
-                sb.append("       }\n");
+            JSONArray jsonGsmCellArray = new JSONArray();
+            for (GsmCell gsmCell : gsmCells) {
+                JSONObject jsonCell = new JSONObject();
+                jsonCell.put("countrycode", gsmCell.countrycode);
+                jsonCell.put("age", gsmCell.age);
+                jsonCell.put("cellid", gsmCell.cellid);
+                jsonCell.put("lac", gsmCell.lac);
+                jsonCell.put("operatorid", gsmCell.operatorid);
+                jsonCell.put("signal_strength", gsmCell.signal_strength);
+                jsonGsmCellArray.put(jsonCell);
             }
-            sb.append("   ]");
+            jsonResult.put("gsm_cells", jsonGsmCellArray);
         }
+
         if (wifiNetworks != null && wifiNetworks.size() >= 1) {
-            sb.append(",\n");
-            sb.append("   \"wifi_networks\": [\n");
-            for (int i = 0, size = wifiNetworks.size(); i < size; i++) {
-                WifiNetwork wifiNetwork = wifiNetworks.get(i);
-                if (i != 0) {
-                    sb.append(",\n");
-                }
-                sb.append("       {\n");
-                sb.append("          \"mac\": \"" + wifiNetwork.mac + "\",\n" +
-                        "          \"signal_strength\": " + wifiNetwork.signal_strength + ",\n" +
-                        "          \"age\": " + wifiNetwork.age + "\n"
-                );
-                sb.append("       }\n");
+            JSONArray jsonWifiNetworkArray = new JSONArray();
+            for (WifiNetwork wifiNetwork : wifiNetworks) {
+                JSONObject jsonWifiNetwork = new JSONObject();
+                jsonWifiNetwork.put("age", wifiNetwork.age);
+                jsonWifiNetwork.put("mac", wifiNetwork.mac);
+                jsonWifiNetwork.put("signal_strength", wifiNetwork.signal_strength);
+                jsonWifiNetworkArray.put(jsonWifiNetwork);
             }
-            sb.append("   ]");
+            jsonResult.put("wifi_networks", jsonWifiNetworkArray);
         }
+
         if (ip != null) {
-            sb.append(",\n");
-            sb.append("   \"ip\": {\n" +
-                    "     \"address_v4\": \"" + ip.address_v4 + "\"\n" +
-                    "   }");
+            JSONObject jsonIp = new JSONObject();
+            jsonIp.put("address_v4", ip.address_v4);
+            jsonResult.put("ip", jsonIp);
         }
-        sb.append("\n}");
-        return sb.toString();
+
+        return jsonResult;
     }
 
     public void setGsmCells(List<GsmCell> gsmCells) {
@@ -84,6 +77,5 @@ public class YandexLocatorRequestBuilder {
     public void setIp(Ip ip) {
         this.ip = ip;
     }
-
 
 }

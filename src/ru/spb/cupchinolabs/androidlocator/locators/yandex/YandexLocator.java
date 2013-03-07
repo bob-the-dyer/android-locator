@@ -35,11 +35,6 @@ public class YandexLocator extends AbstractChainedLocator {
     protected Location locateImpl() {
         YandexLocatorRequestBuilder builder = new YandexLocatorRequestBuilder();
 
-        Ip ip = new Ip();
-        ip.address_v4 = "178.247.233.32";
-        builder.setIp(ip);
-
-
         GsmCell gsmCell = new GsmCell();
         gsmCell.age = "5555";
         gsmCell.cellid = "42332";
@@ -59,13 +54,16 @@ public class YandexLocator extends AbstractChainedLocator {
         wifiNetwork.age = "0";
 
         builder.setWifiNetworks(wifiNetworks);
-
         builder.setGsmCells(gsmCells);
 
-        String request = builder.build();
+        Ip ip = new Ip();
+        ip.address_v4 = "178.247.233.32";
+        builder.setIp(ip);
 
         HttpURLConnection conn = null;
         try {
+            String request = "json=" + builder.buildJSON().toString();
+
             Log.d(TAG, "yandex.locator request -> " + request);
 
             URL url = new URL("http://api.lbs.yandex.net/geolocation");
