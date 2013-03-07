@@ -9,75 +9,53 @@ import ru.spb.cupchinolabs.androidlocator.locators.AbstractChainedLocator;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
  * User: VladimirK
  * Date: 06.03.13
  * Time: 19:24
- * <p/>
- * TODO rework to JSON!
  */
 public class YandexLocator extends AbstractChainedLocator {
 
     private static final String TAG = YandexLocator.class.getSimpleName();
 
     private final int timeoutInMillis;
+    private NetworkDataRetriever retriever;
 
-    public YandexLocator(int timeoutInSec) {
+    public YandexLocator(NetworkDataRetriever retriever, int timeoutInSec) {
+        this.retriever = retriever;
         this.timeoutInMillis = timeoutInSec * 1000;
     }
 
     @Override
     protected Location locateImpl() {
-        YandexLocatorRequestBuilder builder = new YandexLocatorRequestBuilder();
 
-        GsmCell gsmCell = new GsmCell();
-        gsmCell.age = "5555";
-        gsmCell.cellid = "42332";
-        gsmCell.countrycode = "250";
-        gsmCell.lac = "36002";
-        gsmCell.signal_strength = "-80";
-        gsmCell.operatorid = "99";
+        if (retriever == null){
+            Log.d(TAG, "retriever is null, skipping");
+            return null;
+        }
 
-        List<GsmCell> gsmCells = new ArrayList<>();
-        gsmCells.add(gsmCell);
+        NetworkData data = retriever.retrieve();
 
-        List<WifiNetwork> wifiNetworks = new ArrayList<>();
-
-        WifiNetwork wifiNetwork = new WifiNetwork();
-        wifiNetwork.mac = "00-1C-F0-E4-BB-F5";
-        wifiNetwork.signal_strength = "-88";
-        wifiNetwork.age = "0";
-
-        builder.setWifiNetworks(wifiNetworks);
-        builder.setGsmCells(gsmCells);
-
-        Ip ip = new Ip();
-        ip.address_v4 = "178.247.233.32";
-        builder.setIp(ip);
+        if (!data.isSufficient()) {
+            Log.d(TAG, "Network data is insufficient for locator, skipping");
+            return null;
+        }
 
         HttpURLConnection conn = null;
+
         try {
-            String request = "json=" + builder.buildJSON().toString();
+            JSONObject jsonRequest = buildJSONRequest(data);
+
+            String request = "json=" + jsonRequest.toString();
 
             Log.d(TAG, "yandex.locator request -> " + request);
 
-            URL url = new URL("http://api.lbs.yandex.net/geolocation");
-            conn = (HttpURLConnection) url.openConnection();
-            conn.setReadTimeout(timeoutInMillis);
-            conn.setConnectTimeout(timeoutInMillis);
-            conn.setRequestMethod("POST");
-            conn.setDoOutput(true);
-            conn.setRequestProperty("Content-Length", Integer.toString(request.getBytes().length));
+            conn = buildHttpUrlConnection(conn, request);
 
-            DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
-            wr.writeBytes(request);
-            wr.flush();
-            wr.close();
+            doPost(conn, request);
 
             int responseCode = conn.getResponseCode();
             Log.d(TAG, "responseCode -> " + responseCode);
@@ -91,7 +69,6 @@ public class YandexLocator extends AbstractChainedLocator {
             }
 
             String jsonResponseAsString = readResponseAsString(is);
-            Log.d(TAG, "response json -> " + jsonResponseAsString);
 
             if (200 != responseCode) {
                 Log.d(TAG, "error occurred, returning null");
@@ -120,6 +97,34 @@ public class YandexLocator extends AbstractChainedLocator {
         }
     }
 
+    private void doPost(HttpURLConnection conn, String request) throws IOException {
+        DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
+        wr.writeBytes(request);
+        wr.flush();
+        wr.close();
+    }
+
+    private HttpURLConnection buildHttpUrlConnection(HttpURLConnection conn, String request) throws IOException {
+        URL url = new URL("http://api.lbs.yandex.net/geolocation");
+        conn = (HttpURLConnection) url.openConnection();
+        conn.setReadTimeout(timeoutInMillis);
+        conn.setConnectTimeout(timeoutInMillis);
+        conn.setRequestMethod("POST");
+        conn.setDoOutput(true);
+        conn.setRequestProperty("Content-Length", Integer.toString(request.getBytes().length));
+        return conn;
+    }
+
+    private JSONObject buildJSONRequest(NetworkData data) throws JSONException {
+        JSONRequestBuilder jsonBuilder = new JSONRequestBuilder();
+
+        jsonBuilder.setWifiNetworks(data.getWifiNetworkList());
+        jsonBuilder.setGsmCells(data.getGsmCellList());
+        jsonBuilder.setIp(data.getIp());
+
+        return jsonBuilder.build();
+    }
+
     private String readResponseAsString(InputStream is) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         StringBuilder sb = new StringBuilder();
@@ -127,7 +132,9 @@ public class YandexLocator extends AbstractChainedLocator {
         while ((line = reader.readLine()) != null) {
             sb.append(line + System.getProperty("line.separator"));
         }
-        return sb.toString();
+        String response = sb.toString();
+        Log.d(TAG, "response json -> " + response);
+        return response;
     }
 
     private Location createLocationFromJSON(JSONObject jsonResponse) throws JSONException {

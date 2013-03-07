@@ -6,7 +6,7 @@ package ru.spb.cupchinolabs.androidlocator.locators;
  * Date: 05.03.13
  * Time: 11:03
  * <p/>
- * TODO This class should become a lightweight replacement of a android.location.Location over the project
+ * TODO This class should become a lightweight replacement of a android.location.Location all over the project
  */
 public class LocationVO {
 

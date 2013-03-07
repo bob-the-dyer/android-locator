@@ -12,7 +12,7 @@ import java.util.List;
  * Date: 07.03.13
  * Time: 4:59
  */
-public class YandexLocatorRequestBuilder {
+public class JSONRequestBuilder {
 
     public static final String API_KEY =
             "AHfzMFEBAAAAt4_RTQQAk57mvJS6SMGh4nwNNOB5HVMrqkEAAAAAAAAAAADMKekl28qO50dzsm-9AF83cDEjvg==";
@@ -21,7 +21,7 @@ public class YandexLocatorRequestBuilder {
     private List<WifiNetwork> wifiNetworks;
     private Ip ip;
 
-    public JSONObject buildJSON() throws JSONException {
+    public JSONObject build() throws JSONException {
         JSONObject jsonResult = new JSONObject();
 
         JSONObject common = new JSONObject();

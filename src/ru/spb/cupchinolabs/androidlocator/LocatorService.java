@@ -18,6 +18,7 @@ import android.util.Log;
 import ru.spb.cupchinolabs.androidlocator.locators.DeadEndLocator;
 import ru.spb.cupchinolabs.androidlocator.locators.Locator;
 import ru.spb.cupchinolabs.androidlocator.locators.ProviderOrientedLocator;
+import ru.spb.cupchinolabs.androidlocator.locators.yandex.NetworkDataRetriever;
 import ru.spb.cupchinolabs.androidlocator.locators.yandex.YandexLocator;
 
 import java.util.Timer;
@@ -78,17 +79,19 @@ public class LocatorService extends Service {
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
-           //TODO
+            //TODO
         } else {
-           //TODO
+            //TODO
         }
 
         LocationManager manager =
                 (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
+        NetworkDataRetriever retriever = new NetworkDataRetriever();
+
         Locator locator =
                 new ProviderOrientedLocator(GPS_PROVIDER, manager, handler, GPS_PROVIDER_TIMEOUT_IN_SEC)
-                        .setNext(new YandexLocator(YANDEX_PROVIDER_TIMEOUT_IN_SEC)
+                        .setNext(new YandexLocator(retriever, YANDEX_PROVIDER_TIMEOUT_IN_SEC)
                                 .setNext(new ProviderOrientedLocator(NETWORK_PROVIDER, manager, handler, NETWORK_PROVIDER_TIMEOUT_IN_SEC)
                                         .setNext(new DeadEndLocator())));
         return locator;
