@@ -69,25 +69,14 @@ public class LocatorService extends Service {
 
         timer = new Timer("LMS-timer");
 
-        Locator locator = createChainOfResponsibilities();
+        Locator locator = createLocatorChainOfResponsibilities();
 
         timer.schedule(new LMSTimerTask(locator, getContentResolver()), 1000, TASK_REPEAT_INTERVAL_IN_SEC * 1000);
     }
 
-    private Locator createChainOfResponsibilities() {
-
-        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-
-        if (networkInfo != null && networkInfo.isConnected()) {
-            //TODO
-        } else {
-            //TODO
-        }
-
+    private Locator createLocatorChainOfResponsibilities() {
         LocationManager locationManager =
                 (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
         Locator locator =
                 new ProviderOrientedLocator(GPS_PROVIDER, locationManager, handler, GPS_PROVIDER_TIMEOUT_IN_SEC)
                         .setNext(new YandexLocator(new NetworkDataRetriever(YANDEX_PROVIDER_TIMEOUT_IN_SEC, this), YANDEX_PROVIDER_TIMEOUT_IN_SEC)

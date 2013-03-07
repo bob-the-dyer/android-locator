@@ -50,7 +50,7 @@
         <provider android:name=".PersistentLocatorProvider"
                   android:authorities="ru.spb.cupchinolabs.androidlocator.provider"
                   android:exported="true"
-                  android:multiprocess="true"
+                  android:multiprocess="false"
                   android:readPermission="ru.spb.cupchinolabs.androidlocator.provider.permission.READ_PROVIDER"
                   android:writePermission="ru.spb.cupchinolabs.androidlocator.provider.permission.WRITE_PROVIDER"
                 >
