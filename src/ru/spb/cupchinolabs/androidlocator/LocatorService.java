@@ -16,7 +16,7 @@ import android.util.Log;
 import ru.spb.cupchinolabs.androidlocator.locators.DeadEndLocator;
 import ru.spb.cupchinolabs.androidlocator.locators.Locator;
 import ru.spb.cupchinolabs.androidlocator.locators.ProviderOrientedLocator;
-import ru.spb.cupchinolabs.androidlocator.locators.yandex.NetworkDataRetriever;
+import ru.spb.cupchinolabs.androidlocator.locators.yandex.NetworkDataBuilder;
 import ru.spb.cupchinolabs.androidlocator.locators.yandex.YandexLocator;
 
 import java.util.Timer;
@@ -39,7 +39,7 @@ public class LocatorService extends Service {
     private static final String TAG = LocatorService.class.getSimpleName();
 
     private static final int GPS_TIMEOUT_IN_SEC = 60;
-    private static final int NETWORK_TIMEOUT_IN_SEC = 5;
+    private static final int NETWORK_TIMEOUT_IN_SEC = 10;
     private static final int YANDEX_TIMEOUT_IN_SEC = 20;
 
     private static final int TASK_PAD_INTERVAL_IN_SEC = 30;
@@ -77,7 +77,7 @@ public class LocatorService extends Service {
                 (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         return
                 new ProviderOrientedLocator(GPS_PROVIDER, manager, handler, GPS_TIMEOUT_IN_SEC)
-                        .setNext(new YandexLocator(new NetworkDataRetriever(YANDEX_TIMEOUT_IN_SEC, this), YANDEX_TIMEOUT_IN_SEC)
+                        .setNext(new YandexLocator(new NetworkDataBuilder(YANDEX_TIMEOUT_IN_SEC, this), YANDEX_TIMEOUT_IN_SEC)
                                 .setNext(new ProviderOrientedLocator(NETWORK_PROVIDER, manager, handler, NETWORK_TIMEOUT_IN_SEC)
                                         .setNext(new DeadEndLocator())));
     }

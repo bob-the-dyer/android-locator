@@ -19,26 +19,26 @@ import java.util.Map;
  * Date: 07.03.13
  * Time: 11:17
  */
-public class NetworkDataRetriever extends PhoneStateListener {
+public class NetworkDataBuilder extends PhoneStateListener {
 
-    private static final String TAG = NetworkDataRetriever.class.getSimpleName();
+    private static final String TAG = NetworkDataBuilder.class.getSimpleName();
 
     private final int timeoutInMillis;
     private final WifiManager wifiManager;
     private final TelephonyManager telephonyManager;
 
-    public NetworkDataRetriever(int timeoutInSec, Context context) {
+    public NetworkDataBuilder(int timeoutInSec, Context context) {
         this.timeoutInMillis = timeoutInSec * 1000 / 2;
         this.wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
         this.telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
     }
 
-    public NetworkData retrieve() {
+    public NetworkData build() {
         return
                 new NetworkData()
                         .setGsmCellList(scanGsm())
                         .setWifiNetworkList(scanWifi())
-                        .setIp(null); //TODO retrieve ip
+                        .setIp(null); //TODO build ip
     }
 
     private List<WifiNetwork> scanWifi() {

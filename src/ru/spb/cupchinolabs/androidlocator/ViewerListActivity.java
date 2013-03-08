@@ -79,7 +79,7 @@ public class ViewerListActivity extends ListActivity {
     protected void onStart() {
         super.onStart();
         Log.d(TAG, "onStart");
-        //TODO retrieve fresh list?
+        //TODO build fresh list?
     }
 
     @Override

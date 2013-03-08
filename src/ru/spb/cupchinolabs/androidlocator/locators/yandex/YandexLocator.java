@@ -22,22 +22,22 @@ public class YandexLocator extends AbstractChainedLocator {
     private static final String TAG = YandexLocator.class.getSimpleName();
 
     private final int timeoutInMillis;
-    private NetworkDataRetriever retriever;
+    private NetworkDataBuilder builder;
 
-    public YandexLocator(NetworkDataRetriever retriever, int timeoutInSec) {
-        this.retriever = retriever;
+    public YandexLocator(NetworkDataBuilder builder, int timeoutInSec) {
+        this.builder = builder;
         this.timeoutInMillis = timeoutInSec * 1000 / 2;
     }
 
     @Override
     protected Location locateImpl() {
 
-        if (retriever == null) {
-            Log.d(TAG, "retriever is null, skipping");
+        if (builder == null) {
+            Log.d(TAG, "builder is null, skipping");
             return null;
         }
 
-        NetworkData data = retriever.retrieve();
+        NetworkData data = builder.build();
 
         if (!data.isSufficient()) {
             Log.d(TAG, "Network data is insufficient for locator, skipping");
@@ -47,13 +47,13 @@ public class YandexLocator extends AbstractChainedLocator {
         HttpURLConnection conn = null;
 
         try {
-            JSONObject jsonRequest = buildJSONRequest(data);
+            JSONObject jsonRequest = createJSONRequest(data);
 
             String request = "json=" + jsonRequest.toString();
 
             Log.d(TAG, "yandex.locator request -> " + request);
 
-            conn = buildHttpUrlConnection(conn, request);
+            conn = createHttpUrlConnection(conn, request);
 
             postRequest(conn, request);
 
@@ -104,7 +104,7 @@ public class YandexLocator extends AbstractChainedLocator {
         wr.close();
     }
 
-    private HttpURLConnection buildHttpUrlConnection(HttpURLConnection conn, String request) throws IOException {
+    private HttpURLConnection createHttpUrlConnection(HttpURLConnection conn, String request) throws IOException {
         URL url = new URL("http://api.lbs.yandex.net/geolocation");
         conn = (HttpURLConnection) url.openConnection();
         conn.setReadTimeout(timeoutInMillis);
@@ -115,7 +115,7 @@ public class YandexLocator extends AbstractChainedLocator {
         return conn;
     }
 
-    private JSONObject buildJSONRequest(NetworkData data) throws JSONException {
+    private JSONObject createJSONRequest(NetworkData data) throws JSONException {
         JSONRequestBuilder jsonBuilder = new JSONRequestBuilder();
 
         jsonBuilder.setWifiNetworks(data.getWifiNetworkList());

@@ -12,17 +12,17 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class LocatorDbHelper extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 4;
 
     public static final String DATABASE_NAME = "Locator.db";
 
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + LocatorProviderContract.LOCATION_TABLE_NAME + " (" +
                     LocatorProviderContract.Location._ID + " INTEGER PRIMARY KEY, " +
-                    LocatorProviderContract.Location.TIME + " INTEGER, " +
-                    LocatorProviderContract.Location.LATITUDE + " REAL, " +
-                    LocatorProviderContract.Location.LONGITUDE + " REAL, " +
-                    LocatorProviderContract.Location.PROVIDER + " TEXT" +
+                    LocatorProviderContract.Location.TIME + " INTEGER NOT NULL, " +
+                    LocatorProviderContract.Location.LATITUDE + " REAL NOT NULL, " +
+                    LocatorProviderContract.Location.LONGITUDE + " REAL NOT NULL, " +
+                    LocatorProviderContract.Location.PROVIDER + " TEXT NOT NULL" +
                     " )";
 
     private static final String SQL_DELETE_ENTRIES =
