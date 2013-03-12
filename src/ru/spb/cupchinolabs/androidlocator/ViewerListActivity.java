@@ -57,7 +57,7 @@ public class ViewerListActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate");
         handler = new Handler();
-        Cursor cursor = createNewCursor();
+        Cursor cursor = createNewCursor();//TODO this is a potentially long-running operation, ANR is possible?
         if (null == cursor) {
             throw new IllegalStateException("error occurred -> provider is returning null as a cursor, URI is wrong");
         } else if (cursor.getCount() < 1) {

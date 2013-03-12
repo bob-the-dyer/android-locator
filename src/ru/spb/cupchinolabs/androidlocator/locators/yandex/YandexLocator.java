@@ -1,6 +1,8 @@
 package ru.spb.cupchinolabs.androidlocator.locators.yandex;
 
 import android.location.Location;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.Log;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,9 +25,11 @@ public class YandexLocator extends AbstractChainedLocator {
 
     private final int timeoutInMillis;
     private NetworkDataBuilder builder;
+    private ConnectivityManager connectivityManager;
 
-    public YandexLocator(NetworkDataBuilder builder, int timeoutInSec) {
+    public YandexLocator(NetworkDataBuilder builder, ConnectivityManager connectivityManager, int timeoutInSec) {
         this.builder = builder;
+        this.connectivityManager = connectivityManager;
         this.timeoutInMillis = timeoutInSec * 1000 / 2;
     }
 
@@ -34,6 +38,12 @@ public class YandexLocator extends AbstractChainedLocator {
 
         if (builder == null) {
             Log.d(TAG, "builder is null, skipping");
+            return null;
+        }
+
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo == null || !networkInfo.isConnected()) {
+            Log.d(TAG, "no network or disconnected");
             return null;
         }
 

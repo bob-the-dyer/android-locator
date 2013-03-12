@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.IBinder;
@@ -73,12 +74,14 @@ public class LocatorService extends Service {
     }
 
     private Locator createLocatorChainOfResponsibilities() {
-        LocationManager manager =
+        LocationManager locationManager =
                 (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        ConnectivityManager connectivityManager =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         return
-                new ProviderOrientedLocator(GPS_PROVIDER, manager, handler, GPS_TIMEOUT_IN_SEC)
-                        .setNext(new YandexLocator(new NetworkDataBuilder(YANDEX_TIMEOUT_IN_SEC, this), YANDEX_TIMEOUT_IN_SEC)
-                                .setNext(new ProviderOrientedLocator(NETWORK_PROVIDER, manager, handler, NETWORK_TIMEOUT_IN_SEC)
+                new ProviderOrientedLocator(GPS_PROVIDER, locationManager, handler, GPS_TIMEOUT_IN_SEC)
+                        .setNext(new YandexLocator(new NetworkDataBuilder(YANDEX_TIMEOUT_IN_SEC, this), connectivityManager, YANDEX_TIMEOUT_IN_SEC)
+                                .setNext(new ProviderOrientedLocator(NETWORK_PROVIDER, locationManager, handler, NETWORK_TIMEOUT_IN_SEC)
                                         .setNext(new DeadEndLocator())));
     }
 
