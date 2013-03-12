@@ -18,6 +18,8 @@ import java.util.Date;
  * User: VladimirK
  * Date: 06.03.13
  * Time: 19:24
+ *
+ * TODO zip requests to minimize traffic and response time
  */
 public class YandexLocator extends AbstractChainedLocator {
 
