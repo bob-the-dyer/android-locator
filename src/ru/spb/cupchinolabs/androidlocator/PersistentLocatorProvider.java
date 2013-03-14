@@ -34,7 +34,7 @@ public class PersistentLocatorProvider extends ContentProvider {
         db = dbHelper.getReadableDatabase();
 
         return db.query(
-                LocatorProviderContract.LOCATION_TABLE_NAME,
+                LocatorProviderContract.LOCATION_TABLE_NAME,//TODO probably uri should be analyzed instead of hardcode
                 projections,
                 selection,
                 selectionArgs,
@@ -49,6 +49,7 @@ public class PersistentLocatorProvider extends ContentProvider {
 
         db = dbHelper.getWritableDatabase();
 
+        //TODO probably uri should be analyzed instead of hardcoded table name
         long newRowId = db.insert(LocatorProviderContract.LOCATION_TABLE_NAME, null, contentValues);
 
         getContext().getContentResolver().notifyChange(uri, null);
