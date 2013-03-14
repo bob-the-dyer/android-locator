@@ -45,7 +45,7 @@ public class YandexLocator extends AbstractChainedLocator {
 
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         if (networkInfo == null || !networkInfo.isConnected()) {
-            Log.d(TAG, "no network or disconnected");
+            Log.d(TAG, "no network or disconnected, skipping");
             return null;
         }
 
