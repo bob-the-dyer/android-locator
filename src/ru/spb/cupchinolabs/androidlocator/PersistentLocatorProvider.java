@@ -5,6 +5,7 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
@@ -95,14 +96,22 @@ public class PersistentLocatorProvider extends ContentProvider {
     public Uri insert(Uri uri, ContentValues contentValues) {
         Log.d(TAG, "insert");
 
+        if (uriMatcher.match(uri) != INCOMING_LOCATION_COLLECTION_URI_INDICATOR) {
+            throw new IllegalArgumentException("Unknown URI " + uri);
+        }
+
+        //Then contentValues validation should come
+
         db = dbHelper.getWritableDatabase();
 
-        //TODO probably uri should be analyzed instead of hardcoded table name
         long newRowId = db.insert(LocatorProviderContract.LOCATION_TABLE_NAME, null, contentValues);
 
-        getContext().getContentResolver().notifyChange(uri, null);
-
-        return ContentUris.withAppendedId(uri, newRowId);
+        if (newRowId > 0) {
+            Uri insertedUri = ContentUris.withAppendedId(uri, newRowId);
+            getContext().getContentResolver().notifyChange(insertedUri, null);
+            return insertedUri;
+        }
+        throw new SQLException("Failed to insert row into + " + uri);
     }
 
     @Override
