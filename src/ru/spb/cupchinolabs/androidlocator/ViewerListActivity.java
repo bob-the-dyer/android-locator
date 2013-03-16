@@ -71,8 +71,8 @@ public class ViewerListActivity extends ListActivity {
     }
 
     private Cursor createNewCursor() {
-        return getContentResolver().query( //TODO query not all rows
-                PARSED_LOCATION_URI, PROJECTION, null, new String[]{}, LocatorProviderContract.Location._ID + " DESC");
+        //TODO query not all rows
+        return getContentResolver().query(PARSED_LOCATION_URI, PROJECTION, null, new String[]{}, null);
     }
 
     @Override
