@@ -1,6 +1,7 @@
 package ru.spb.cupchinolabs.androidlocator;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.net.Uri;
@@ -8,7 +9,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.widget.CursorAdapter;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
@@ -89,6 +92,17 @@ public class ViewerListActivity extends ListActivity {
         contentObserver = null;
         cursorAdapter = null;
         handler = null;
+    }
+
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        String latitude = ((TextView) v.findViewById(R.id.latitude)).getText().toString();
+        String longitude = ((TextView) v.findViewById(R.id.longitude)).getText().toString();
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        //geo:lat,long?z=zoomlevel&q=question-string
+        intent.setData(Uri.parse("geo:" + latitude + "," + longitude + "?z=13"));
+        startActivity(intent);
     }
 
     private class ProviderContentObserver extends ContentObserver {
